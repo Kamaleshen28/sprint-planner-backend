@@ -264,12 +264,25 @@ const planSprints = (stories, numberOfSprints, sprintDuration, capacity) => {
   return sprints;
 };
 
-// main function
-const getSprints = (stories, developers, sprintDuration, capacity) => {
-  // console.log('stories', JSON.stringify(stories, null, 2));
-  // console.log('developers', developers);
-  // console.log('sprintDuration', sprintDuration);
-  // console.log('capacity', capacity);
+const isPossible = (stories, totalDuration, sprintDuration, sprintCapacity) => {
+  const maxEndDay = stories.reduce((acc, story) => {
+    if (story.endDay > acc) return story.endDay;
+    return acc;
+  }, 0);
+  // number of coding days in a sprint = sprintCapacity
+  const allowedNumberOfSprints = Math.ceil(totalDuration / sprintDuration);
+  const totalNumberOfCodingDays = allowedNumberOfSprints * sprintCapacity;
+  if (maxEndDay > totalNumberOfCodingDays) return false;
+  return true;
+};
+
+const storyPlanning = (
+  developers,
+  stories,
+  sprintDuration,
+  sprintCapacity,
+  givenTotalDuration = null
+) => {
   if (developers.length === 0) throw new Error('No developers available');
   if (stories.length === 0) throw new Error('No stories available');
   const { dependencyGraph, indegrees } = getDependencyGraph(stories);
@@ -282,17 +295,98 @@ const getSprints = (stories, developers, sprintDuration, capacity) => {
     dependencyGraph,
     indegrees
   );
+  if (givenTotalDuration) {
+    if (
+      !isPossible(stories, givenTotalDuration, sprintDuration, sprintCapacity)
+    ) {
+      throw new Error(
+        'Not possible to complete the project within the given time and the number of developers'
+      );
+    }
+  }
+  return {
+    stories,
+    dummyDevs,
+    totalDuration,
+  };
+};
+
+// main function
+const getSprints = (
+  stories,
+  developers,
+  sprintDuration,
+  sprintCapacity,
+  givenTotalDuration
+) => {
+  // console.log('stories', JSON.stringify(stories, null, 2));
+  // console.log('developers', developers);
+  // console.log('sprintDuration', sprintDuration);
+  // console.log('capacity', capacity);
+
+  // if (developers.length === 0) throw new Error('No developers available');
+  // if (stories.length === 0) throw new Error('No stories available');
+  // const { dependencyGraph, indegrees } = getDependencyGraph(stories);
+  // initializeStories(stories);
+  // const dummyDevs = createDummyDevlopers(developers.length);
+
+  // const totalDuration = planStories(
+  //   stories,
+  //   dummyDevs,
+  //   dependencyGraph,
+  //   indegrees
+  // );
+  // if (givenTotalDuration) {
+  //   if (!isPossible(stories, totalDuration, sprintDuration, capacity)) {
+  //     throw new Error('Not possible to complete the project within the given time and the number of developers');
+  //   }
+  // }
+
+  if (!developers && stories && givenTotalDuration) {
+    const maxDeveloperLimit = 50;
+    for (let numberOfDevs = 1; i <= maxDeveloperLimit; i++) {
+      try {
+        const dummyDevs = createDummyDevlopers(numberOfDevs);
+        // create copy of stories: stories is an array of objects
+        const storiesToPass = JSON.parse(JSON.stringify(stories));
+        storyPlanning(
+          dummyDevs,
+          storiesToPass,
+          sprintDuration,
+          sprintCapacity,
+          givenTotalDuration
+        );
+        return numberOfDevs;
+      } catch (error) {
+        console.log(`Not possible with ${numberOfDevs} developers`);
+      }
+    }
+    throw new Error('Not possible with even 50 developers in the given time');
+  }
+
+  const {
+    stories: plannedStories,
+    dummyDevs,
+    totalDuration,
+  } = storyPlanning(
+    JSON.parse(JSON.stringify(developers)),
+    JSON.parse(JSON.stringify(stories)),
+    sprintDuration,
+    sprintCapacity,
+    givenTotalDuration
+  );
+
   const numberOfSprints = Math.ceil(
     totalDuration / (sprintDuration * capacity)
   );
-  mapDevlopersToStories(stories, developers);
+  mapDevlopersToStories(plannedStories, developers);
   const sprints = planSprints(
-    stories,
+    plannedStories,
     numberOfSprints,
     sprintDuration,
     capacity
   ); // also return the developers array with the stories assigned to them
-  
+
   // console.log('gfdghvmbn', sprints);
   return sprints;
 };

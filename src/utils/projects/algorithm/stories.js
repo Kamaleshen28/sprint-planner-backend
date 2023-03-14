@@ -177,6 +177,22 @@ const planStories = (
         inProgress,
         currentDay
       );
+
+      // if we have developers available but no available stories available, assign all developers to the first story in inProgress
+      if (!availableStories.isEmpty() && developersAvailable.length) {
+        const story = inProgress.dequeue();
+        const remainingEffort = story.endDay - currentDay; // remaining effort is the difference between the end day of the story and the current day
+        // now we'll assign all developers available to this story
+        const newNumberOfDevelopers =
+          story.developers.length + developersAvailable.length;
+
+        const newEndDay =
+          currentDay + Math.ceil(remainingEffort / newNumberOfDevelopers); // assumption here is that all these developers will work on this story until it is complete: this is not necessarily true, but it's a good approximation
+        story.endDay = newEndDay;
+        story.developers.push(...developersAvailable);
+        developersAvailable.splice(0, developersAvailable.length);
+        inProgress.enqueue(story.id, -story.endDay);
+      }
     }
 
     if (atleastOneStoryCompleted) {
@@ -186,3 +202,5 @@ const planStories = (
     }
   }
 };
+
+module.exports = planStories;
