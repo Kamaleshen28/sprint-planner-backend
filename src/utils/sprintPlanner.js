@@ -356,7 +356,7 @@ const getSprints = (
           sprintCapacity,
           givenTotalDuration
         );
-        return numberOfDevs;
+        return {numberOfDevs};
       } catch (error) {
         console.log(`Not possible with ${numberOfDevs} developers`);
       }

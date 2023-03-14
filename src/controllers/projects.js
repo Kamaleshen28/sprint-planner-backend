@@ -36,6 +36,7 @@ const createProject = async (req, res) => {
       stories,
       developers,
       projectStartDate,
+      givenTotalDuration,
     } = req.body;
     const result = await PROJECT_SERVICES.createProject({
       title,
@@ -44,6 +45,7 @@ const createProject = async (req, res) => {
       stories,
       developers,
       projectStartDate,
+      givenTotalDuration,
     });
     // do sprint calculation on this data
     const sprintCalculation = PROJECT_UTILS.calculateSprint(
