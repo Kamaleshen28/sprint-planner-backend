@@ -9,6 +9,7 @@ const createProjectRequest = joi.object({
   duration: joi.number().required(),
   sprintDuration: joi.number().required(),
   sprintCapacity: joi.number().required(),
+  projectStartDate: joi.date().required(),
   stories: joi.array().items(
     joi.object({
       id: joi.number().required(),

@@ -29,14 +29,21 @@ const getProject = async (req, res) => {
 const createProject = async (req, res) => {
   try {
     // data format to be validated
-    const { title, sprintDuration, sprintCapacity, stories, developers } =
-      req.body;
+    const {
+      title,
+      sprintDuration,
+      sprintCapacity,
+      stories,
+      developers,
+      projectStartDate,
+    } = req.body;
     const result = await PROJECT_SERVICES.createProject({
       title,
       sprintDuration,
       sprintCapacity,
       stories,
       developers,
+      projectStartDate,
     });
     // do sprint calculation on this data
     const sprintCalculation = PROJECT_UTILS.calculateSprint(

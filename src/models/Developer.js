@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       projectId: {
         type: DataTypes.UUID,
         allowNull: false,
+        primaryKey: true, // composite primary key (projectId, id)
       },
     },
     {
