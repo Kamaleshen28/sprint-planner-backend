@@ -19,6 +19,7 @@ const getProject = async (id) => {
 
 const createProject = async (project) => {
   const { stories, developers, ...newProject } = project;
+  if (!developers) return project; // don't create project if no developers are provided: caller just needs an advice on how many developers are needed
   const savedProject = await Project.create(newProject);
 
   // ------------------ Can be shifted to funtion in respective models ------------------
