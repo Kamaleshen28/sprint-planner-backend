@@ -1,3 +1,5 @@
+const httpError = require('../utils/httpError');
+
 const userServices = require('../services/auth');
 
 const createUser = async (req, res) => {
@@ -9,7 +11,11 @@ const createUser = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof httpError) {
+      res.status(error.code).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: error.message });
+    }
   }
 };
 
@@ -17,6 +23,7 @@ const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const result = await userServices.login(username, password);
+    console.log('REQ: ', result);
     res.status(200).json({
       message: 'User logged in successfully',
       data: {
@@ -24,7 +31,11 @@ const login = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof httpError) {
+      res.status(error.code).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: error.message });
+    }
   }
 };
 
