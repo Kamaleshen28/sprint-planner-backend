@@ -2,13 +2,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
-const createUser = (username, password) => {
-  const user = User.findOne({ where: { username } });
+const createUser = async (username, password) => {
+  const user = await User.findOne({ where: { username } });
   if (user) {
     throw new Error('user already exists');
   }
   const hashedPassword = bcrypt.hashSync(password, 10);
-  const result = User.create({ username, hashedPassword });
+  const result = User.create({ username, password: hashedPassword });
   return result;
 };
 
