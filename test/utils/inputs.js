@@ -131,6 +131,7 @@ const input1 = {
   ],
   sprintDuration: 2,
   capacity: 5,
+  givenTotalDuration: 4,
 };
 
 const input2 = {
@@ -184,6 +185,7 @@ const input2 = {
   ],
   sprintDuration: 2,
   capacity: 5,
+  givenTotalDuration: 4,
 };
 const input3 = {
   stories: [
@@ -236,6 +238,7 @@ const input3 = {
   ],
   sprintDuration: 2,
   capacity: 5,
+  givenTotalDuration: 4,
 };
 const input4 = {
   stories: [
@@ -292,6 +295,7 @@ const input4 = {
   ],
   sprintDuration: 2,
   capacity: 5,
+  givenTotalDuration: 4,
 };
 const input5 = {
   stories: [

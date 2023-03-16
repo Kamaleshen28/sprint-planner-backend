@@ -35,6 +35,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      projectStartDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      givenTotalDuration: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
     },
     {
       sequelize,
