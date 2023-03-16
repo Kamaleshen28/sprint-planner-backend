@@ -26,7 +26,7 @@ const login = async (username, password) => {
     throw new HttpError('wrong password', 401);
   }
 
-  const token = jwt.sign({ username }, 'secret', { expiresIn: '1d' });
+  const token = await jwt.sign({ username }, 'secret', { expiresIn: '1d' });
   return token;
 };
 
