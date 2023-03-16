@@ -9,9 +9,10 @@ const validateJWT = (req, res, next) => {
     const decoded = jwt.verify(token, 'secret');
     req.user = decoded;
     next();
+    return null;
   } catch (err) {
-    res.status(401).json({ message: 'jwt malformed' });
+    return res.status(401).json({ message: 'jwt malformed' });
   }
-}
+};
 
 module.exports = validateJWT;

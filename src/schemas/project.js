@@ -4,6 +4,8 @@ const getProjectParams = joi.object({
   id: joi.string().uuid().required(),
 });
 
+const listProjectsQuery = joi.object({}); // empty
+
 const createProjectRequest = joi.object({
   title: joi.string().required(),
   duration: joi.number().required(),
@@ -30,4 +32,4 @@ const createProjectRequest = joi.object({
   ),
 });
 
-module.exports = { getProjectParams, createProjectRequest };
+module.exports = { getProjectParams, listProjectsQuery, createProjectRequest };

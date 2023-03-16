@@ -43,6 +43,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
+      owner: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'admin', // for the projects created earlier
+      },
     },
     {
       sequelize,

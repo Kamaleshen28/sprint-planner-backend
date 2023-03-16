@@ -8,8 +8,12 @@ const createUser = async (username, password) => {
     throw new Error('user already exists');
   }
   const hashedPassword = bcrypt.hashSync(password, 10);
-  const result = User.create({ username, password: hashedPassword });
-  return result;
+  const result = await User.create({ username, password: hashedPassword });
+  console.log(result);
+  return {
+    id: result.id,
+    username: result.username,
+  };
 };
 
 const login = async (username, password) => {
