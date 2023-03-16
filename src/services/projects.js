@@ -9,18 +9,26 @@ static associate(models) {
         as: 'developers',
       });
 */
-const getProject = async (id) => {
-  // include stories and developers
-  const project = await Project.findByPk(id, {
+const getProject = async (owner, id) => {
+  const project = await Project.findOne({
+    where: { id, owner },
     include: ['stories', 'developers'],
   });
   return project;
 };
 
-const createProject = async (project) => {
+const getProjectListByOwner = async (owner) => {
+  const projects = await Project.findAll({
+    where: { owner }, // select only id, title and owner
+    attributes: ['id', 'title', 'owner'],
+  });
+  return projects;
+};
+
+const createProject = async (owner, project) => {
   const { stories, developers, ...newProject } = project;
   if (!developers) return project; // don't create project if no developers are provided: caller just needs an advice on how many developers are needed
-  const savedProject = await Project.create(newProject);
+  const savedProject = await Project.create({ ...newProject, owner });
 
   // ------------------ Can be shifted to funtion in respective models ------------------
   const storiesWithProjectId = stories.map((story) => ({
@@ -44,5 +52,6 @@ const createProject = async (project) => {
 
 module.exports = {
   getProject,
+  getProjectListByOwner,
   createProject,
 };

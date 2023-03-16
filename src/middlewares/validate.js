@@ -1,4 +1,4 @@
-const validateRequest = (schema) => (req, res, next) => {
+const validateBody = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);
 
   if (validationResult.error) {
@@ -29,4 +29,4 @@ const validateQuery = (schema) => (req, res, next) => {
   }
 };
 
-module.exports = { validateRequest, validateParams, validateQuery };
+module.exports = { validateBody, validateParams, validateQuery };
