@@ -4,7 +4,7 @@ const cors = require('cors');
 const { PORT, ENV } = require('./utils/config');
 const API_ROUTER = require('./routes');
 const AUTH_ROUTER = require('./routes/auth');
-const validateJWT = require('../src/middlewares/authMiddleware')
+const validateJWT = require('./middlewares/authMiddleware');
 
 const app = express();
 

@@ -5,7 +5,7 @@ const PROJECT_UTILS = require('../utils/projects');
 const getProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await PROJECT_SERVICES.getProject(req.user, id);
+    const result = await PROJECT_SERVICES.getProject(req.user.username, id);
     if (result) {
       // do sprint calculation on this data
       const sprintCalculation = PROJECT_UTILS.calculateSprint(
@@ -29,7 +29,9 @@ const getProject = async (req, res) => {
 
 const getProjectList = async (req, res) => {
   try {
-    const result = await PROJECT_SERVICES.getProjectListByOwner(req.user);
+    const result = await PROJECT_SERVICES.getProjectListByOwner(
+      req.user.username
+    );
     if (!result || !result.length) {
       return res.status(404).json({ message: 'No project found' });
     }
@@ -55,7 +57,7 @@ const createProject = async (req, res) => {
       projectStartDate,
       givenTotalDuration,
     } = req.body;
-    const result = await PROJECT_SERVICES.createProject(req.user, {
+    const result = await PROJECT_SERVICES.createProject(req.user.username, {
       title,
       sprintDuration,
       sprintCapacity,
