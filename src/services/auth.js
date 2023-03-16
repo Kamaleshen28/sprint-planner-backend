@@ -3,6 +3,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const createUser = (username, password) => {
+  const user = User.findOne({where: {username}})
+  if(user) {
+    throw new Error('user already exists');
+  }
   password = bcrypt.hashSync(password, 10);
   const result = User.create({username, password});
   return result;
