@@ -46,6 +46,7 @@ const getProjectList = async (req, res) => {
 };
 
 const createProject = async (req, res) => {
+  let projectId = null;
   try {
     // data format to be validated
     const {
@@ -66,6 +67,10 @@ const createProject = async (req, res) => {
       projectStartDate,
       givenTotalDuration,
     });
+    if (result && result.id) {
+      console.log('Project created successfully, saving id');
+      projectId = result.id;
+    }
     // do sprint calculation on this data
     const sprintCalculation = PROJECT_UTILS.calculateSprint(
       JSON.parse(JSON.stringify(result))
@@ -76,7 +81,12 @@ const createProject = async (req, res) => {
     });
   } catch (error) {
     // console.log(error);
-    return res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
+    if (projectId) {
+      console.log('Project creation failed, deleting project');
+      await PROJECT_SERVICES.deleteProject(req.user.username, projectId);
+    }
+    return null;
   }
 };
 

@@ -50,8 +50,14 @@ const createProject = async (owner, project) => {
   return result;
 };
 
+const deleteProject = async (owner, id) => {
+  const result = await Project.destroy({ where: { id, owner } });
+  return result;
+};
+
 module.exports = {
   getProject,
   getProjectListByOwner,
   createProject,
+  deleteProject,
 };
