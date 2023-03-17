@@ -112,7 +112,7 @@ const createDummyDevlopers = (totalDevelopers) => {
 };
 
 // plan stories based on dependency graph
-const planStories = (stories, developers, dependencyGraph, indegrees) => {
+const planStories = (stories, developers, dependencyGraph, indegrees, allowMultipleDevsOnStory= false) => {
   if (checkCycleInDependencyGraph(dependencyGraph)) {
     throw new Error('Cycle detected in dependencies');
   }
@@ -136,12 +136,14 @@ const planStories = (stories, developers, dependencyGraph, indegrees) => {
       inProgress.sort();
       devsAvailable--;
     }
-    // assign all devs to highest priority story
-    if (devsAvailable > 0) {
-      const storyID = Math.min(...inProgress);
-      stories[storyID].dummyDevs.push(...developers);
-      while (developers.length > 0) developers.pop();
-      devsAvailable = 0;
+    if (allowMultipleDevsOnStory) {
+      // assign all devs to highest priority story
+      if (devsAvailable > 0) {
+        const storyID = Math.min(...inProgress);
+        stories[storyID].dummyDevs.push(...developers);
+        while (developers.length > 0) developers.pop();
+        devsAvailable = 0;
+      }
     }
 
     // update currentDay
@@ -268,12 +270,8 @@ const planSprints = (stories, numberOfSprints, sprintDuration, capacity) => {
     sprints.push([]);
   }
   for (let i = 0; i < stories.length; i++) {
-    const sprintNumberStart = Math.floor(
-      stories[i].startDay / (capacity)
-    );
-    const sprintNumberEnd = Math.floor(
-      (stories[i].endDay - 1) / (capacity)
-    );
+    const sprintNumberStart = Math.floor(stories[i].startDay / capacity);
+    const sprintNumberEnd = Math.floor((stories[i].endDay - 1) / capacity);
 
     sprints[sprintNumberStart].push(stories[i]);
     if (sprintNumberStart !== sprintNumberEnd) {
@@ -293,11 +291,12 @@ const isPossible = (stories, totalDuration, sprintDuration, sprintCapacity) => {
     return acc;
   }, 0);
   // number of coding days in a sprint = sprintCapacity upto 1 decimal
-  const allowedNumberOfSprints = Math.round((totalDuration / sprintDuration)*10)/10;
-  console.log("allowedNumberOfSprints", allowedNumberOfSprints)
+  const allowedNumberOfSprints =
+    Math.round((totalDuration / sprintDuration) * 10) / 10;
+  console.log('allowedNumberOfSprints', allowedNumberOfSprints);
   const totalNumberOfCodingDays = allowedNumberOfSprints * sprintCapacity;
-  console.log("totalNumberOfCodingDays", totalNumberOfCodingDays)
-  console.log(maxEndDay, totalNumberOfCodingDays)
+  console.log('totalNumberOfCodingDays', totalNumberOfCodingDays);
+  console.log(maxEndDay, totalNumberOfCodingDays);
   if (maxEndDay > totalNumberOfCodingDays) return false;
   return true;
 };
@@ -369,9 +368,13 @@ const getSprints = (
   // }
 
   if (!developers && stories && givenTotalDuration) {
-    console.log("qwerty case")
+    console.log('qwerty case');
     const maxDeveloperLimit = 50;
-    for (let numberOfDevs = 1; numberOfDevs <= maxDeveloperLimit; numberOfDevs++) {
+    for (
+      let numberOfDevs = 1;
+      numberOfDevs <= maxDeveloperLimit;
+      numberOfDevs++
+    ) {
       try {
         const dummyDevs = createDummyDevlopers(numberOfDevs);
         // create copy of stories: stories is an array of objects
@@ -383,7 +386,7 @@ const getSprints = (
           sprintCapacity,
           givenTotalDuration
         );
-        return {numberOfDevs};
+        return { numberOfDevs };
       } catch (error) {
         console.log(`Not possible with ${numberOfDevs} developers`);
       }
@@ -403,9 +406,7 @@ const getSprints = (
     givenTotalDuration
   );
 
-  const numberOfSprints = Math.ceil(
-    totalDuration / (sprintCapacity)
-  );
+  const numberOfSprints = Math.ceil(totalDuration / sprintCapacity);
   mapDevlopersToStories(plannedStories, developers);
   const sprints = planSprints(
     plannedStories,
