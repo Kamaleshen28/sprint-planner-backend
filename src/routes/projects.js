@@ -34,5 +34,10 @@ router.post(
   validationMiddleware.validateBody(validationSchemas.createProjectRequest),
   PROJECT_CONTROLLER.createProject
 ); // creates a new project
+router.put(
+  '/:id',
+  validationMiddleware.validateBody(validationSchemas.createProjectRequest),
+  PROJECT_CONTROLLER.editProjectDetailsById
+); // edit an existing project details by id
 
 module.exports = router;

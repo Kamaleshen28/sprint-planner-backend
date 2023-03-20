@@ -55,9 +55,43 @@ const deleteProject = async (owner, id) => {
   return result;
 };
 
+const editProject = async (owner, projectId, projectData) => {
+  const { stories, developers, ...editedProjectData } = projectData;
+
+  // edit project table
+  const result = await Project.update(
+    { ...editedProjectData, owner },
+    {
+      where: { id: projectId },
+    }
+  );
+
+  // edit story table
+  await Story.destroy({
+    where: { projectId },
+  });
+  const storiesWithProjectId = stories.map((story) => ({
+    ...story,
+    projectId,
+  }));
+  await Story.bulkCreate(storiesWithProjectId);
+
+  // edit developer table
+  const developersWithProjectId = developers.map((developer) => ({
+    ...developer,
+    projectId,
+  }));
+  await Developer.destroy({
+    where: { projectId },
+  });
+  await Developer.bulkCreate(developersWithProjectId);
+  return result;
+};
+
 module.exports = {
   getProject,
   getProjectListByOwner,
   createProject,
   deleteProject,
+  editProject,
 };

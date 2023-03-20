@@ -90,8 +90,39 @@ const createProject = async (req, res) => {
   }
 };
 
+const editProjectDetailsById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log('IN: ', id);
+    const {
+      title,
+      sprintDuration,
+      sprintCapacity,
+      stories,
+      developers,
+      projectStartDate,
+      givenTotalDuration,
+    } = req.body;
+    const result = await PROJECT_SERVICES.editProject(req.user.username, id, {
+      title,
+      sprintDuration,
+      sprintCapacity,
+      stories,
+      developers,
+      projectStartDate,
+      givenTotalDuration,
+    });
+    res
+      .status(200)
+      .json({ message: 'Project edited successfully', data: result });
+  } catch (error) {
+    res.status(500).json({ message: 'something went wrong, try again' });
+  }
+};
+
 module.exports = {
   getProject,
   getProjectList,
   createProject,
+  editProjectDetailsById,
 };
