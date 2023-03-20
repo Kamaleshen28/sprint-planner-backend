@@ -62,7 +62,7 @@ const editProject = async (owner, projectId, projectData) => {
   const result = await Project.update(
     { ...editedProjectData, owner },
     {
-      where: { id: projectId },
+      where: { id: projectId, owner },
     }
   );
 
