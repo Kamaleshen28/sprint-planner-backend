@@ -137,6 +137,12 @@ const editProjectDetailsById = async (req, res) => {
   } catch (error) {
     await PROJECT_SERVICES.updateProjectStatus(id, 'unsupportedInput');
     res.status(500).json({ message: error.message });
+
+    // eslint-disable-next-line eqeqeq
+    if (error.message != 'No developers available') {
+      console.log('Project editing failed, deleting project');
+      await PROJECT_SERVICES.deleteProject(req.user.username, id);
+    }
   }
 };
 
