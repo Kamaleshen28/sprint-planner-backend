@@ -48,6 +48,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 'admin', // for the projects created earlier
       },
+      status: {
+        type: DataTypes.ENUM('planned', 'unsupportedInput'),
+      },
     },
     {
       sequelize,
