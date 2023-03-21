@@ -75,13 +75,16 @@ const createProject = async (req, res) => {
     const sprintCalculation = PROJECT_UTILS.calculateSprint(
       JSON.parse(JSON.stringify(result))
     );
+
+    await PROJECT_SERVICES.updateProjectStatus(projectId, 'planned');
     return res.status(201).json({
       message: 'Project created successfully',
       data: sprintCalculation,
     });
   } catch (error) {
-    // console.log(error);
+    await PROJECT_SERVICES.updateProjectStatus(projectId, 'unsupportedInput');
     res.status(500).json({ message: error.message });
+
     if (projectId) {
       console.log('Project creation failed, deleting project');
       await PROJECT_SERVICES.deleteProject(req.user.username, projectId);
@@ -91,8 +94,8 @@ const createProject = async (req, res) => {
 };
 
 const editProjectDetailsById = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
     const {
       title,
       sprintDuration,
@@ -111,20 +114,16 @@ const editProjectDetailsById = async (req, res) => {
       projectStartDate,
       givenTotalDuration,
     });
-    console.log('RERE: ', result, result.id);
-    if (result && result.id) {
-      console.log('Project edited successfully, saving id');
-    }
+
     const sprintPlan = PROJECT_UTILS.calculateSprint(
       JSON.parse(JSON.stringify(result))
     );
-    await PROJECT_SERVICES.updateProjectStatus(result.id, 'planned');
+    await PROJECT_SERVICES.updateProjectStatus(id, 'planned');
     res
       .status(200)
       .json({ message: 'Project edited successfully', data: sprintPlan });
   } catch (error) {
-    await PROJECT_SERVICES.updateProjectStatus('unsupportedInput');
-
+    await PROJECT_SERVICES.updateProjectStatus(id, 'unsupportedInput');
     res.status(500).json({ message: error.message });
   }
 };

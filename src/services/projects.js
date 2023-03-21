@@ -100,13 +100,12 @@ const editProject = async (owner, projectId, projectData) => {
   const result = await Project.findByPk(projectId, {
     include: ['stories', 'developers'],
   });
+  // eslint-disable-next-line consistent-return
   return result;
 };
 
 // update project status
-
 const updateProjectStatus = async (projectId, status) => {
-  console.log('ININ: ', projectId, status);
   await Project.update({ status }, { where: { id: projectId } });
 };
 
