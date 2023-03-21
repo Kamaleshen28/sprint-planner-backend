@@ -90,15 +90,24 @@ const updateDeveloperDetails = async (projectId, developers) => {
 
 const editProject = async (owner, projectId, projectData) => {
   const { stories, developers, ...editedProjectData } = projectData;
-  const result = await updateProjectDetails(
-    projectId,
-    owner,
-    editedProjectData
-  );
+  if (!developers) {
+    return;
+  }
+  await updateProjectDetails(projectId, owner, editedProjectData);
   await updateStoryDetails(projectId, stories);
   await updateDeveloperDetails(projectId, developers);
 
+  const result = await Project.findByPk(projectId, {
+    include: ['stories', 'developers'],
+  });
   return result;
+};
+
+// update project status
+
+const updateProjectStatus = async (projectId, status) => {
+  console.log('ININ: ', projectId, status);
+  await Project.update({ status }, { where: { id: projectId } });
 };
 
 module.exports = {
@@ -107,4 +116,5 @@ module.exports = {
   createProject,
   deleteProject,
   editProject,
+  updateProjectStatus,
 };

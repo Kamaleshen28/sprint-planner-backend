@@ -111,11 +111,21 @@ const editProjectDetailsById = async (req, res) => {
       projectStartDate,
       givenTotalDuration,
     });
+    console.log('RERE: ', result, result.id);
+    if (result && result.id) {
+      console.log('Project edited successfully, saving id');
+    }
+    const sprintPlan = PROJECT_UTILS.calculateSprint(
+      JSON.parse(JSON.stringify(result))
+    );
+    await PROJECT_SERVICES.updateProjectStatus(result.id, 'planned');
     res
       .status(200)
-      .json({ message: 'Project edited successfully', data: result });
+      .json({ message: 'Project edited successfully', data: sprintPlan });
   } catch (error) {
-    res.status(500).json({ message: 'something went wrong, try again later' });
+    await PROJECT_SERVICES.updateProjectStatus('unsupportedInput');
+
+    res.status(500).json({ message: error.message });
   }
 };
 
