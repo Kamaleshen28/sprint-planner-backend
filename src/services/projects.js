@@ -55,28 +55,29 @@ const deleteProject = async (owner, id) => {
   return result;
 };
 
-const editProject = async (owner, projectId, projectData) => {
-  const { stories, developers, ...editedProjectData } = projectData;
-
-  // edit project table
-  const result = await Project.update(
+// edit project table
+const updateProjectDetails = async (projectId, owner, editedProjectData) =>
+  Project.update(
     { ...editedProjectData, owner },
     {
       where: { id: projectId, owner },
     }
   );
 
-  // edit story table
-  await Story.destroy({
-    where: { projectId },
-  });
+// edit story table
+const updateStoryDetails = async (projectId, stories) => {
   const storiesWithProjectId = stories.map((story) => ({
     ...story,
     projectId,
   }));
+  await Story.destroy({
+    where: { projectId },
+  });
   await Story.bulkCreate(storiesWithProjectId);
+};
 
-  // edit developer table
+// edit developer table
+const updateDeveloperDetails = async (projectId, developers) => {
   const developersWithProjectId = developers.map((developer) => ({
     ...developer,
     projectId,
@@ -85,6 +86,18 @@ const editProject = async (owner, projectId, projectData) => {
     where: { projectId },
   });
   await Developer.bulkCreate(developersWithProjectId);
+};
+
+const editProject = async (owner, projectId, projectData) => {
+  const { stories, developers, ...editedProjectData } = projectData;
+  const result = await updateProjectDetails(
+    projectId,
+    owner,
+    editedProjectData
+  );
+  await updateStoryDetails(projectId, stories);
+  await updateDeveloperDetails(projectId, developers);
+
   return result;
 };
 

@@ -93,7 +93,6 @@ const createProject = async (req, res) => {
 const editProjectDetailsById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('IN: ', id);
     const {
       title,
       sprintDuration,
@@ -116,7 +115,7 @@ const editProjectDetailsById = async (req, res) => {
       .status(200)
       .json({ message: 'Project edited successfully', data: result });
   } catch (error) {
-    res.status(500).json({ message: 'something went wrong, try again' });
+    res.status(500).json({ message: 'something went wrong, try again later' });
   }
 };
 
