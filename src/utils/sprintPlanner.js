@@ -367,6 +367,7 @@ const getSprints = (
   //   }
   // }
 
+  // !developers.length
   if (!developers && stories && givenTotalDuration) {
     console.log('qwerty case');
     const maxDeveloperLimit = 50;
@@ -391,7 +392,7 @@ const getSprints = (
         console.log(`Not possible with ${numberOfDevs} developers`);
       }
     }
-    throw new Error('Not possible with even 50 developers in the given time');
+    throw new Error('Not possible in the given time frame');
   }
 
   const {

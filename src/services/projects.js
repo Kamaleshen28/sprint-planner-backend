@@ -45,6 +45,8 @@ const createProject = async (owner, project) => {
   }
   // if (!developers) return project; // don't create project if no developers are provided: caller just needs an advice on how many developers are needed
   // --------------------------------------------------------------------------------
+
+  // required? as the developes array will be empty if !developers
   if (developers) {
     const result = await Project.findByPk(savedProject.id, {
       include: ['stories', 'developers'],
@@ -82,7 +84,11 @@ const updateStoryDetails = async (projectId, stories) => {
   await Story.destroy({
     where: { projectId },
   });
-  await Story.bulkCreate(storiesWithProjectId);
+  console.log('bulk delete on stories done');
+  console.log('storiesWithProjectId', storiesWithProjectId);
+  const temp = await Story.bulkCreate(storiesWithProjectId);
+  console.log('temp', temp);
+  console.log('bulk update on stories done');
 };
 
 // edit developer table
@@ -97,10 +103,12 @@ const updateDeveloperDetails = async (projectId, developers) => {
       where: { projectId },
     });
     await Developer.bulkCreate(developersWithProjectId);
+    console.log('bulk update on developers done');
   } else {
     await Developer.destroy({
       where: { projectId },
     });
+    console.log('bulk delete on developers done');
   }
 };
 
@@ -109,8 +117,11 @@ const editProject = async (owner, projectId, projectData) => {
   // if (!developers) {
   //   return projectData;
   // }
+  console.log('updating project details');
   await updateProjectDetails(projectId, owner, editedProjectData);
+  console.log('updating story details');
   await updateStoryDetails(projectId, stories);
+  console.log('updating developer details');
   // if (developers) {
   await updateDeveloperDetails(projectId, developers);
   // }
@@ -135,6 +146,11 @@ const updateProjectStatus = async (projectId, status) => {
   await Project.update({ status }, { where: { id: projectId } });
 };
 
+// update project remarks
+const updateProjectRemarks = async (projectId, remarks) => {
+  await Project.update({ remarks }, { where: { id: projectId } });
+};
+
 module.exports = {
   getProject,
   getProjectListByOwner,
@@ -142,4 +158,5 @@ module.exports = {
   deleteProject,
   editProject,
   updateProjectStatus,
+  updateProjectRemarks,
 };
