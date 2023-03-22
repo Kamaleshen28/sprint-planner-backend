@@ -1,4 +1,5 @@
 const OktaJwtVerifier = require('@okta/jwt-verifier');
+require('dotenv').config();
 
 const oktaJwtVerifier = new OktaJwtVerifier({
   clientId: process.env.OKTA_CLIENT_ID,
@@ -21,7 +22,7 @@ const validateToken = async (req, res, next) => {
     const jwt = await oktaJwtVerifier.verifyAccessToken(accessToken, audience);
     req.user = {
       uid: jwt.claims.uid,
-      email: jwt.claims.sub,
+      username: jwt.claims.sub,
     };
     next();
   } catch (err) {
