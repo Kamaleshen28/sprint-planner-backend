@@ -6,7 +6,14 @@ const getProject = async (req, res) => {
   try {
     const { id } = req.params;
     const result = await PROJECT_SERVICES.getProject(req.user.username, id);
-    if (result) {
+    if (result.status === 'unsupportedInput') {
+      return res.status(200).json({
+        message: 'Project Draft',
+        data: result,
+      });
+    }
+    if (result.status === 'planned') {
+      console.log('Project planned');
       // do sprint calculation on this data
       const sprintCalculation = PROJECT_UTILS.calculateSprint(
         JSON.parse(JSON.stringify(result))
@@ -75,12 +82,15 @@ const createProject = async (req, res) => {
     const sprintCalculation = PROJECT_UTILS.calculateSprint(
       JSON.parse(JSON.stringify(result))
     );
+    console.log('Sprint calculation done');
+    console.log(sprintCalculation);
 
     const { minimumNumberOfDevelopers } = sprintCalculation;
     if (!minimumNumberOfDevelopers) {
       await PROJECT_SERVICES.updateProjectStatus(projectId, 'planned');
     } else {
       await PROJECT_SERVICES.updateProjectStatus(projectId, 'unsupportedInput');
+      console.log('heerere');
     }
 
     return res.status(201).json({
@@ -88,13 +98,14 @@ const createProject = async (req, res) => {
       data: sprintCalculation,
     });
   } catch (error) {
+    console.log('Project creation failedwwww');
     await PROJECT_SERVICES.updateProjectStatus(projectId, 'unsupportedInput');
     res.status(500).json({ message: error.message });
 
     // eslint-disable-next-line eqeqeq
     if (projectId && error.message != 'No developers available') {
       console.log('Project creation failed, deleting project');
-      await PROJECT_SERVICES.deleteProject(req.user.username, projectId);
+      // await PROJECT_SERVICES.deleteProject(req.user.username, projectId);
     }
     return null;
   }
@@ -141,7 +152,7 @@ const editProjectDetailsById = async (req, res) => {
     // eslint-disable-next-line eqeqeq
     if (error.message != 'No developers available') {
       console.log('Project editing failed, deleting project');
-      await PROJECT_SERVICES.deleteProject(req.user.username, id);
+      // await PROJECT_SERVICES.deleteProject(req.user.username, id);
     }
   }
 };

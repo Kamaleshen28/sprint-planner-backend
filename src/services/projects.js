@@ -27,7 +27,6 @@ const getProjectListByOwner = async (owner) => {
 
 const createProject = async (owner, project) => {
   const { stories, developers, ...newProject } = project;
-  // if (!developers) return project; // don't create project if no developers are provided: caller just needs an advice on how many developers are needed
   const savedProject = await Project.create({ ...newProject, owner });
 
   // ------------------ Can be shifted to funtion in respective models ------------------
@@ -37,16 +36,26 @@ const createProject = async (owner, project) => {
   }));
   await Story.bulkCreate(storiesWithProjectId);
 
-  const developersWithProjectId = developers.map((developer) => ({
-    ...developer,
-    projectId: savedProject.id,
-  }));
-  await Developer.bulkCreate(developersWithProjectId);
+  if (developers) {
+    const developersWithProjectId = developers.map((developer) => ({
+      ...developer,
+      projectId: savedProject.id,
+    }));
+    await Developer.bulkCreate(developersWithProjectId);
+  }
+  // if (!developers) return project; // don't create project if no developers are provided: caller just needs an advice on how many developers are needed
   // --------------------------------------------------------------------------------
-
+  if (developers) {
+    const result = await Project.findByPk(savedProject.id, {
+      include: ['stories', 'developers'],
+    });
+    console.log('result', result);
+    return result;
+  }
   const result = await Project.findByPk(savedProject.id, {
-    include: ['stories', 'developers'],
+    include: ['stories'],
   });
+  console.log('result', result);
   return result;
 };
 
@@ -78,14 +87,21 @@ const updateStoryDetails = async (projectId, stories) => {
 
 // edit developer table
 const updateDeveloperDetails = async (projectId, developers) => {
-  const developersWithProjectId = developers.map((developer) => ({
-    ...developer,
-    projectId,
-  }));
-  await Developer.destroy({
-    where: { projectId },
-  });
-  await Developer.bulkCreate(developersWithProjectId);
+  console.log('developers', developers);
+  if (developers) {
+    const developersWithProjectId = developers.map((developer) => ({
+      ...developer,
+      projectId,
+    }));
+    await Developer.destroy({
+      where: { projectId },
+    });
+    await Developer.bulkCreate(developersWithProjectId);
+  } else {
+    await Developer.destroy({
+      where: { projectId },
+    });
+  }
 };
 
 const editProject = async (owner, projectId, projectData) => {
@@ -95,12 +111,22 @@ const editProject = async (owner, projectId, projectData) => {
   // }
   await updateProjectDetails(projectId, owner, editedProjectData);
   await updateStoryDetails(projectId, stories);
+  // if (developers) {
   await updateDeveloperDetails(projectId, developers);
+  // }
 
-  const result = await Project.findByPk(projectId, {
-    include: ['stories', 'developers'],
-  });
+  if (developers) {
+    const result = await Project.findByPk(projectId, {
+      include: ['stories', 'developers'],
+    });
+    // console.log('result', result);
+    return result;
+  }
+
   // eslint-disable-next-line consistent-return
+  const result = await Project.findByPk(projectId, {
+    include: ['stories'],
+  });
   return result;
 };
 
