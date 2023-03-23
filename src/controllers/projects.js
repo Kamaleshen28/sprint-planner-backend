@@ -88,9 +88,17 @@ const createProject = async (req, res) => {
     const { minimumNumberOfDevelopers } = sprintCalculation;
     if (!minimumNumberOfDevelopers) {
       await PROJECT_SERVICES.updateProjectStatus(projectId, 'planned');
+      await PROJECT_SERVICES.updateProjectRemarks(projectId, '');
+      sprintCalculation.status = 'planned';
+      sprintCalculation.remarks = '';
     } else {
       await PROJECT_SERVICES.updateProjectStatus(projectId, 'unsupportedInput');
-      console.log('heerere');
+      await PROJECT_SERVICES.updateProjectRemarks(
+        projectId,
+        `DEVELOPERS REQUIRED ${minimumNumberOfDevelopers}`
+      );
+      sprintCalculation.status = 'unsupportedInput';
+      sprintCalculation.remarks = `DEVELOPERS REQUIRED ${minimumNumberOfDevelopers}`;
     }
 
     return res.status(201).json({
@@ -98,16 +106,14 @@ const createProject = async (req, res) => {
       data: sprintCalculation,
     });
   } catch (error) {
-    console.log('Project creation failedwwww');
-    await PROJECT_SERVICES.updateProjectStatus(projectId, 'unsupportedInput');
-    res.status(500).json({ message: error.message });
-
-    // eslint-disable-next-line eqeqeq
-    if (projectId && error.message != 'No developers available') {
-      console.log('Project creation failed, deleting project');
-      // await PROJECT_SERVICES.deleteProject(req.user.username, projectId);
+    const resBody = { message: error.message };
+    if (projectId) {
+      resBody.projectId = projectId;
+      await PROJECT_SERVICES.updateProjectStatus(projectId, 'unsupportedInput');
+      await PROJECT_SERVICES.updateProjectRemarks(projectId, error.message);
+      console.log('updated project status and remarks');
     }
-    return null;
+    return res.status(500).json(resBody);
   }
 };
 
@@ -137,23 +143,35 @@ const editProjectDetailsById = async (req, res) => {
       JSON.parse(JSON.stringify(result))
     );
     const { minimumNumberOfDevelopers } = sprintPlan;
-    if (!minimumNumberOfDevelopers) {
-      await PROJECT_SERVICES.updateProjectStatus(id, 'planned');
-    } else {
+    console.log('minimumNumberOfDevelopers', minimumNumberOfDevelopers);
+    if (minimumNumberOfDevelopers) {
+      console.log('here');
       await PROJECT_SERVICES.updateProjectStatus(id, 'unsupportedInput');
+      await PROJECT_SERVICES.updateProjectRemarks(
+        id,
+        `DEVELOPERS REQUIRED ${minimumNumberOfDevelopers}`
+      );
+      sprintPlan.status = 'unsupportedInput';
+      sprintPlan.remarks = `DEVELOPERS REQUIRED ${minimumNumberOfDevelopers}`;
+    } else {
+      await PROJECT_SERVICES.updateProjectStatus(id, 'planned');
+      await PROJECT_SERVICES.updateProjectRemarks(id, '');
+      sprintPlan.status = 'planned';
+      sprintPlan.remarks = '';
     }
-    res
-      .status(200)
+
+    return res
+      .status(201)
       .json({ message: 'Project edited successfully', data: sprintPlan });
   } catch (error) {
-    await PROJECT_SERVICES.updateProjectStatus(id, 'unsupportedInput');
-    res.status(500).json({ message: error.message });
-
-    // eslint-disable-next-line eqeqeq
-    if (error.message != 'No developers available') {
-      console.log('Project editing failed, deleting project');
-      // await PROJECT_SERVICES.deleteProject(req.user.username, id);
+    const resBody = { message: error.message };
+    if (id) {
+      resBody.projectId = id;
+      await PROJECT_SERVICES.updateProjectStatus(id, 'unsupportedInput');
+      await PROJECT_SERVICES.updateProjectRemarks(id, error.message);
+      console.log('updated project status and remarks');
     }
+    return res.status(500).json(resBody);
   }
 };
 

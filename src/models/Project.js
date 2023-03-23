@@ -51,6 +51,11 @@ module.exports = (sequelize, DataTypes) => {
       status: {
         type: DataTypes.ENUM('planned', 'unsupportedInput'),
       },
+      remarks: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: '',
+      },
     },
     {
       sequelize,
