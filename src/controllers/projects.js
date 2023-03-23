@@ -6,6 +6,9 @@ const getProject = async (req, res) => {
   try {
     const { id } = req.params;
     const result = await PROJECT_SERVICES.getProject(req.user.username, id);
+    if (!result) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
     if (result.status === 'unsupportedInput') {
       return res.status(200).json({
         message: 'Project Draft',
@@ -157,9 +160,20 @@ const editProjectDetailsById = async (req, res) => {
   }
 };
 
+const deleteProjectById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await PROJECT_SERVICES.deleteProject(req.user.username, id);
+    return res.status(204).json({ message: 'Project deleted successfully' });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getProject,
   getProjectList,
   createProject,
   editProjectDetailsById,
+  deleteProjectById,
 };
