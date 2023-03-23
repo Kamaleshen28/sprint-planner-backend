@@ -39,5 +39,10 @@ router.put(
   validationMiddleware.validateBody(validationSchemas.createProjectRequest),
   PROJECT_CONTROLLER.editProjectDetailsById
 ); // edit an existing project details by id
+router.delete(
+  '/:id',
+  validationMiddleware.validateParams(validationSchemas.deleteProjectParams),
+  PROJECT_CONTROLLER.deleteProjectById
+); // delete an existing project by id
 
 module.exports = router;

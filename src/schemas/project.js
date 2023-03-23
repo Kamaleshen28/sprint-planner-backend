@@ -32,4 +32,13 @@ const createProjectRequest = joi.object({
   ),
 });
 
-module.exports = { getProjectParams, listProjectsQuery, createProjectRequest };
+const deleteProjectParams = joi.object({
+  id: joi.string().uuid().required(),
+});
+
+module.exports = {
+  getProjectParams,
+  listProjectsQuery,
+  createProjectRequest,
+  deleteProjectParams,
+};
