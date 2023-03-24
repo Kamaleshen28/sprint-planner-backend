@@ -20,7 +20,14 @@ const getProject = async (owner, id) => {
 const getProjectListByOwner = async (owner) => {
   const projects = await Project.findAll({
     where: { owner }, // select only id, title and owner
-    attributes: ['id', 'title', 'owner', 'status'],
+    attributes: [
+      'id',
+      'title',
+      'owner',
+      'status',
+      'remarks',
+      'projectStartDate',
+    ],
   });
   return projects;
 };
