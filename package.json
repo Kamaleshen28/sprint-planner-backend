@@ -7,7 +7,7 @@
     "test": "jest",
     "generateMigration": "sequelize migration:generate --name",
     "migrate": "sequelize db:migrate",
-    "start": "npm run migrate && node --watch src/index.js"
+    "start": "npm install && npm run migrate && node --watch src/index.js"
   },
   "repository": {
     "type": "git",

@@ -27,7 +27,7 @@ const calculateSprint = (project) => {
       assignedDeveloperId: preAssignedDeveloperId,
     };
   });
-  const sprints = getSprints(
+  const { sprints, plannedStories } = getSprints(
     updatedStories, // stories,
     developers,
     sprintDuration,
@@ -43,7 +43,7 @@ const calculateSprint = (project) => {
     };
   }
 
-  return { ...project, sprints };
+  return { ...project, sprints, plannedStories };
 };
 
 module.exports = calculateSprint;

@@ -37,6 +37,37 @@ const getProject = async (req, res) => {
   }
 };
 
+// download project as csv: set content-type to text/csv
+const downloadAsCSV = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await PROJECT_SERVICES.getProject(req.user.username, id);
+    if (!result) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+    if (result.status === 'unsupportedInput') {
+      return res.status(200).json({
+        message: 'Project Draft',
+        data: result,
+      });
+    }
+    if (result.status === 'planned') {
+      console.log('Project planned');
+      // do sprint calculation on this data
+      const sprintCalculation = PROJECT_UTILS.calculateSprint(
+        JSON.parse(JSON.stringify(result))
+      );
+      const csvString = PROJECT_UTILS.convertToCSV(sprintCalculation);
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=project.csv');
+      return res.send(csvString);
+    }
+    return res.status(404).json({ message: 'Project not found' });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const getProjectList = async (req, res) => {
   try {
     const result = await PROJECT_SERVICES.getProjectListByOwner(
@@ -194,4 +225,5 @@ module.exports = {
   createProject,
   editProjectDetailsById,
   deleteProjectById,
+  downloadAsCSV,
 };

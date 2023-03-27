@@ -112,7 +112,13 @@ const createDummyDevlopers = (totalDevelopers) => {
 };
 
 // plan stories based on dependency graph
-const planStories = (stories, developers, dependencyGraph, indegrees, allowMultipleDevsOnStory= false) => {
+const planStories = (
+  stories,
+  developers,
+  dependencyGraph,
+  indegrees,
+  allowMultipleDevsOnStory = false
+) => {
   if (checkCycleInDependencyGraph(dependencyGraph)) {
     throw new Error('Cycle detected in dependencies');
   }
@@ -415,9 +421,9 @@ const getSprints = (
     sprintDuration,
     sprintCapacity
   ); // also return the developers array with the stories assigned to them
-
+  // console.log('planned stories: ', plannedStories);
   // console.log('gfdghvmbn', sprints);
-  return sprints;
+  return { sprints, plannedStories };
 };
 
 module.exports = { getSprints };
