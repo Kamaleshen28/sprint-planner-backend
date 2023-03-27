@@ -98,10 +98,10 @@ const createProject = async (req, res) => {
       await PROJECT_SERVICES.updateProjectStatus(projectId, 'unsupportedInput');
       await PROJECT_SERVICES.updateProjectRemarks(
         projectId,
-        `DEVELOPERS REQUIRED ${minimumNumberOfDevelopers}`
+        `Please add ${minimumNumberOfDevelopers} developers to plan this project`
       );
       sprintCalculation.status = 'unsupportedInput';
-      sprintCalculation.remarks = `DEVELOPERS REQUIRED ${minimumNumberOfDevelopers}`;
+      sprintCalculation.remarks = `Please add ${minimumNumberOfDevelopers} developers to plan this project`;
     }
 
     return res.status(201).json({
@@ -152,10 +152,10 @@ const editProjectDetailsById = async (req, res) => {
       await PROJECT_SERVICES.updateProjectStatus(id, 'unsupportedInput');
       await PROJECT_SERVICES.updateProjectRemarks(
         id,
-        `DEVELOPERS REQUIRED ${minimumNumberOfDevelopers}`
+        `Please add ${minimumNumberOfDevelopers} developers to plan this project`
       );
       sprintPlan.status = 'unsupportedInput';
-      sprintPlan.remarks = `DEVELOPERS REQUIRED ${minimumNumberOfDevelopers}`;
+      sprintPlan.remarks = `Please add ${minimumNumberOfDevelopers} developers to plan this project`;
     } else {
       await PROJECT_SERVICES.updateProjectStatus(id, 'planned');
       await PROJECT_SERVICES.updateProjectRemarks(id, '');
