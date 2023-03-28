@@ -29,6 +29,12 @@ router.get(
   PROJECT_CONTROLLER.getProject
 ); // fetches a single project
 
+router.get(
+  '/:id/save',
+  validationMiddleware.validateParams(validationSchemas.getProjectParams),
+  PROJECT_CONTROLLER.downloadAsCSV
+); // fetches a single project as csv
+
 router.post(
   '/',
   validationMiddleware.validateBody(validationSchemas.createProjectRequest),
