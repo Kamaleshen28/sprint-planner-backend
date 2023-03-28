@@ -25,8 +25,8 @@ const returnStartAndEndDates = (projectStartDate, startDay, endDay) => {
     }
   }
   return {
-    startDate,
-    endDate,
+    startDate: startDate.toDateString(),
+    endDate: endDate.toDateString(),
   };
 };
 
@@ -39,9 +39,9 @@ const csvConversion = (data) => {
     // description: story.description,
     developer: developers[story.assignedDeveloperId].name,
   }));
-  let csvString = 'index,title,developer,\n';
+  let csvString = 'index,start,end,title,developer,\n';
   dataToConvert.forEach((row) => {
-    csvString += `${row.index},${row.title},${row.developer},\n`;
+    csvString += `${row.index},${row.startDate},${row.endDate},${row.title},${row.developer},\n`;
   });
   return csvString;
 };
