@@ -3,12 +3,12 @@ const csvConversion = (data) => {
   const dataToConvert = plannedStories.map((story, ind) => ({
     index: ind + 1,
     title: story.title,
-    description: story.description,
+    // description: story.description,
     developer: developers[story.assignedDeveloperId].name,
   }));
-  let csvString = 'index,title,description,developer,\n';
+  let csvString = 'index,title,developer,\n';
   dataToConvert.forEach((row) => {
-    csvString += `${row.index},${row.title},${row.description},${row.developer},\n`;
+    csvString += `${row.index},${row.title},${row.developer},\n`;
   });
   return csvString;
 };
