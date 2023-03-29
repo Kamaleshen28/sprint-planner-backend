@@ -214,10 +214,26 @@ const deleteProjectById = async (req, res) => {
     const { id } = req.params;
     await PROJECT_SERVICES.deleteProject(req.user.username, id);
     return res.status(204).json({ message: 'Project deleted successfully' });
+  } catch (error) { 
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const bookmarkProjectById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username } = req.user;
+    const { isBookmarked } = req.body;
+    const result = await PROJECT_SERVICES.editProject(username, id, { isBookmarked })
+    if(result) {
+      return res.status(200).json({ message: 'Project bookmarked successfully' });
+    }
+    return res.status(404).json({ message: 'Project not found' });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
+
 
 module.exports = {
   getProject,
@@ -226,4 +242,5 @@ module.exports = {
   editProjectDetailsById,
   deleteProjectById,
   downloadAsCSV,
+  bookmarkProjectById,         
 };

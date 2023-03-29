@@ -125,7 +125,10 @@ const editProject = async (owner, projectId, projectData) => {
   //   return projectData;
   // }
   console.log('updating project details');
-  await updateProjectDetails(projectId, owner, editedProjectData);
+  const updateResult = await updateProjectDetails(projectId, owner, editedProjectData);
+  if (!stories && !developers) {
+    return updateResult[0];
+  }
   console.log('updating story details');
   await updateStoryDetails(projectId, stories);
   console.log('updating developer details');

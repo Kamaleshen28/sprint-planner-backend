@@ -51,4 +51,11 @@ router.delete(
   PROJECT_CONTROLLER.deleteProjectById
 ); // delete an existing project by id
 
+router.put(
+  '/:id/bookmark',
+  validationMiddleware.validateParams(validationSchemas.getProjectParams),
+  validationMiddleware.validateBody(validationSchemas.bookmarkProjectRequest),
+  PROJECT_CONTROLLER.bookmarkProjectById
+); // bookmark an existing project by id
+
 module.exports = router;
