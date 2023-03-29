@@ -56,6 +56,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         defaultValue: '',
       },
+      isBookmarked: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       sequelize,

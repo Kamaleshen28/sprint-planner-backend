@@ -36,9 +36,14 @@ const deleteProjectParams = joi.object({
   id: joi.string().uuid().required(),
 });
 
+const bookmarkProjectRequest = joi.object({
+  isBookmarked: joi.boolean().required(),
+});
+
 module.exports = {
   getProjectParams,
   listProjectsQuery,
   createProjectRequest,
   deleteProjectParams,
+  bookmarkProjectRequest
 };
