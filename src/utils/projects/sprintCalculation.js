@@ -1,6 +1,7 @@
 const { getSprints } = require('../sprintPlanner');
 
 const calculateSprint = (project) => {
+  console.log('Calculating sprint');
   // data preparation
   // console.log(project);
   const {
