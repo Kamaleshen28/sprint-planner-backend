@@ -27,6 +27,7 @@ const getProjectListByOwner = async (owner) => {
       'status',
       'remarks',
       'projectStartDate',
+      'isBookmarked',
     ],
   });
   return projects;
