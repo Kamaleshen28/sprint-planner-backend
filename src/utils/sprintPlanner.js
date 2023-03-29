@@ -197,12 +197,17 @@ const mapDevlopersToStoriesUtil = (stories, developers) => {
     availableDevelopers.push(developers[i].id);
     remainingDummyDevs.push(i);
   }
+
   for (let i = 0; i < stories.length; i++) {
     if (stories[i].assignedDeveloperId !== undefined && stories[i].assignedDeveloperId !== null) {
       const availableDevIndex = availableDevelopers.indexOf(
         stories[i].assignedDeveloperId
       );
-      if(availableDevIndex !== -1) {
+      const remainingDevIndex = remainingDummyDevs.indexOf(
+        stories[i].dummyDevs[0]
+      );
+      console.log(stories[i].assignedDeveloperId)
+      if(availableDevIndex !== -1 && remainingDevIndex !== -1) {
         dummyDevToRealDev[stories[i].dummyDevs[0]] =
           stories[i].assignedDeveloperId;
         availableDevelopers.splice(
@@ -219,8 +224,10 @@ const mapDevlopersToStoriesUtil = (stories, developers) => {
         if( stories[i].assignedDeveloperId !== dummyDevToRealDev[stories[i].dummyDevs[0]])
           throw new Error(`Please change or remove the developer assigned to story "${stories[i].title}" as he is already assigned to another story`);
       }
+
     }
   }
+
   let i = 0;
   while (i < stories.length && dummyDevToRealDev.length !== developers.length) {
     if (
@@ -243,6 +250,7 @@ const mapDevlopersToStoriesUtil = (stories, developers) => {
 };
 
 const mapDevlopersToStories = (stories, developers) => {
+
   const dummyDevToRealDev = mapDevlopersToStoriesUtil(stories, developers);
 
   for (let i = 0; i < stories.length; i++) {
@@ -251,11 +259,13 @@ const mapDevlopersToStories = (stories, developers) => {
       stories[i].developers.push(
         developers[dummyDevToRealDev[stories[i].dummyDevs[j]]]
       );
+
       stories[i].assignedDeveloperId = stories[i].developers[0].id;
     }
     delete stories[i].dummyDevs;
   }
 };
+
 
 // plan the sprints using stories startDay and endDay
 const planSprints = (stories, numberOfSprints, sprintDuration, capacity) => {
@@ -334,7 +344,6 @@ const storyPlanning = (
   const { dependencyGraph, indegrees } = getDependencyGraph(stories);
   initializeStories(stories);
   const dummyDevs = createDummyDevlopers(developers.length);
-
   const totalDuration = planStories(
     stories,
     dummyDevs,
@@ -430,6 +439,7 @@ const getSprints = (
 
   const numberOfSprints = Math.ceil(totalDuration / sprintCapacity);
   mapDevlopersToStories(plannedStories, developers);
+
   const sprints = planSprints(
     plannedStories,
     numberOfSprints,

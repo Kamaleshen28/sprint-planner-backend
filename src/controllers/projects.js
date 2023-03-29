@@ -172,10 +172,10 @@ const editProjectDetailsById = async (req, res) => {
       projectStartDate,
       givenTotalDuration,
     });
-
     const sprintPlan = PROJECT_UTILS.calculateSprint(
       JSON.parse(JSON.stringify(result))
     );
+    
     const { minimumNumberOfDevelopers } = sprintPlan;
     console.log('minimumNumberOfDevelopers', minimumNumberOfDevelopers);
     if (minimumNumberOfDevelopers) {
