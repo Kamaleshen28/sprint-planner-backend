@@ -27,7 +27,8 @@ const calculateSprint = (project) => {
       assignedDeveloperId: preAssignedDeveloperId,
     };
   });
-  const { sprints, plannedStories } = getSprints(
+  // const { sprints, plannedStories } = getSprints(
+  const res = getSprints(
     updatedStories, // stories,
     developers,
     sprintDuration,
@@ -36,14 +37,17 @@ const calculateSprint = (project) => {
   );
 
   // console.log(`Sprints`, sprints);
-  if (sprints.numberOfDevs) {
+  if (res.numberOfDevs) {
     return {
       ...project,
-      minimumNumberOfDevelopers: sprints.numberOfDevs,
+      minimumNumberOfDevelopers: res.numberOfDevs,
     };
   }
-
-  return { ...project, sprints, plannedStories };
+  return {
+    ...project,
+    sprints: res.sprints,
+    plannedStories: res.plannedStories,
+  };
 };
 
 module.exports = calculateSprint;

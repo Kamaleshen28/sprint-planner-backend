@@ -198,17 +198,27 @@ const mapDevlopersToStoriesUtil = (stories, developers) => {
     remainingDummyDevs.push(i);
   }
   for (let i = 0; i < stories.length; i++) {
-    if (stories[i].assignedDeveloperId) {
-      dummyDevToRealDev[stories[i].dummyDevs[0]] =
-        stories[i].assignedDeveloperId;
-      availableDevelopers.splice(
-        availableDevelopers.indexOf(stories[i].assignedDeveloperId),
-        1
+    if (stories[i].assignedDeveloperId !== undefined && stories[i].assignedDeveloperId !== null) {
+      const availableDevIndex = availableDevelopers.indexOf(
+        stories[i].assignedDeveloperId
       );
-      remainingDummyDevs.splice(
-        remainingDummyDevs.indexOf(stories[i].dummyDevs[0]),
-        1
-      );
+      if(availableDevIndex !== -1) {
+        dummyDevToRealDev[stories[i].dummyDevs[0]] =
+          stories[i].assignedDeveloperId;
+        availableDevelopers.splice(
+          availableDevelopers.indexOf(stories[i].assignedDeveloperId),
+          1
+        );
+        remainingDummyDevs.splice(
+          remainingDummyDevs.indexOf(stories[i].dummyDevs[0]),
+          1
+        );
+      }
+      else{
+        // console.log('error');
+        if( stories[i].assignedDeveloperId !== dummyDevToRealDev[stories[i].dummyDevs[0]])
+          throw new Error(`Please change or remove the developer assigned to story "${stories[i].title}" as he is already assigned to another story`);
+      }
     }
   }
   let i = 0;
@@ -277,12 +287,17 @@ const planSprints = (stories, numberOfSprints, sprintDuration, capacity) => {
   }
   for (let i = 0; i < stories.length; i++) {
     const sprintNumberStart = Math.floor(stories[i].startDay / capacity);
-    const sprintNumberEnd = Math.floor((stories[i].endDay - 1) / capacity);
-
+    let sprintNumberEnd = Math.floor((stories[i].endDay - 1) / capacity);
     sprints[sprintNumberStart].push(stories[i]);
-    if (sprintNumberStart !== sprintNumberEnd) {
+    // if (sprintNumberStart !== sprintNumberEnd) {
+    //   sprints[sprintNumberEnd].push(stories[i]);
+    // }
+    
+    while(sprintNumberStart !== sprintNumberEnd){
       sprints[sprintNumberEnd].push(stories[i]);
+      sprintNumberEnd--;
     }
+
   }
   // sort stories in each sprint by startDay
   for (let i = 0; i < sprints.length; i++) {
