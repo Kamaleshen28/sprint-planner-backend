@@ -68,6 +68,10 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'project',
       createdAt: 'created_at',
       updatedAt: 'updated_at',
+      // set default sort order: order by projectStartDate: ASC
+      defaultScope: {
+        order: [['projectStartDate', 'ASC']],
+      },
     }
   );
   return Project;
