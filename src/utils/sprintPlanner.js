@@ -62,6 +62,30 @@ const checkCycleInDependencyGraph = (dependencyGraph) => {
   return false;
 };
 
+
+// const rearrange stories based on preassigned developers
+const rearrangeAvailableStories = (available,stories) => {
+  const storiesWithPreassignedDevelopers = [];
+  const storiesWithoutPreassignedDevelopers = [];
+  for (let i = 0; i < available.length; i++) {
+    if (
+      stories[available[i]].assignedDeveloperId !== null &&
+      stories[available[i]].assignedDeveloperId !== undefined
+    ) {
+      storiesWithPreassignedDevelopers.push(available[i]);
+    } else {
+      storiesWithoutPreassignedDevelopers.push(available[i]);
+    }
+  }
+  for(let i=0;i<available.length;i++){
+    if(i<storiesWithPreassignedDevelopers.length){
+      available[i] = storiesWithPreassignedDevelopers[i];
+    }else{
+      available[i] = storiesWithoutPreassignedDevelopers[i-storiesWithPreassignedDevelopers.length];
+    }
+  }
+};
+
 // initialize pending, available and isComplete stories lists
 const initialzeLists = (pending, available, isComplete, indegrees, stories) => {
   for (let i = 0; i < stories.length; i++) {
@@ -74,7 +98,7 @@ const initialzeLists = (pending, available, isComplete, indegrees, stories) => {
   }
   pending.sort();
   available.sort();
-  //   return { pending, available };
+  rearrangeAvailableStories(available,stories);
 };
 
 // update pending and available stories lists
@@ -90,6 +114,7 @@ const updateLists = (pending, available, indegrees, stories) => {
   }
   pending.sort();
   available.sort();
+  rearrangeAvailableStories(available,stories);
 };
 
 // initialize the stories
@@ -111,12 +136,14 @@ const createDummyDevlopers = (totalDevelopers) => {
   return dummyDevs;
 };
 
+
 // plan stories based on dependency graph
 const planStories = (
   stories,
   developers,
   dependencyGraph,
   indegrees,
+  developersOriginal,
   allowMultipleDevsOnStory = false
 ) => {
   if (checkCycleInDependencyGraph(dependencyGraph)) {
@@ -132,10 +159,45 @@ const planStories = (
   initialzeLists(pending, available, isComplete, indegrees, stories);
 
   while (isComplete.some((x) => x === false)) {
+    console.log('Day :', currentDay);
+    console.log('developers :', developers);
+    console.log('inProgress :', inProgress);
+    console.log('available :', available);
+    console.log('pending :', pending);
+    console.log('isComplete :', isComplete);
+    console.log('devsAvailable :', devsAvailable);
+    console.log('-------------------------');
     // assign stories to developers
     while (available.length > 0 && devsAvailable > 0) {
+      
+      // console.log('assigning stories to developers')
       const storyID = available.splice(0, 1)[0];
-      const developer = developers.splice(0, 1)[0];
+      // const developer = developers.splice(0, 1)[0];
+      let developer;
+      if(stories[storyID].assignedDeveloperId!==null && stories[storyID].assignedDeveloperId!==undefined){
+        const requiredDevIndex = developers.findIndex(dev=>dev===stories[storyID].assignedDeveloperId);
+        if(requiredDevIndex!==-1){
+          developer = developers.splice(requiredDevIndex, 1)[0];
+          console.log(`Developer ${developer} assigned to story ${storyID}`);
+        }
+        else{
+          // if(developers.length!==0){
+
+          //   console.log(`Developer ${stories[storyID].assignedDeveloperId} not found in developers list`);
+          //   console.log('developers :', developers);
+            
+          // }
+          // developer = developers.splice(0, 1)[0];
+          // console.log(`Developer ${developer} assigned to story ${storyID} error case`);
+          console.log(developersOriginal)
+          console.log(stories[storyID].assignedDeveloperId)
+          throw new Error(`Pre-assigned developer "${developersOriginal[stories[storyID].assignedDeveloperId].name}" cannot be assigned to story "${stories[storyID].title}"`);
+        }
+      }
+      else{
+        developer = developers.splice(0, 1)[0];
+        console.log(`Developer ${developer} assigned to story ${storyID}`);
+      }
       stories[storyID].dummyDevs.push(developer);
       stories[storyID].startDay = currentDay;
       inProgress.push(storyID);
@@ -161,6 +223,7 @@ const planStories = (
         1 * stories[inProgress[i]].dummyDevs.length;
 
       if (stories[inProgress[i]].remainingDuration <= 0) {
+        console.log('story completed :', inProgress[i]);
         stories[inProgress[i]].endDay = currentDay;
         isComplete[inProgress[i]] = true;
         const freeDevs = stories[inProgress[i]].dummyDevs;
@@ -251,7 +314,11 @@ const mapDevlopersToStoriesUtil = (stories, developers) => {
 
 const mapDevlopersToStories = (stories, developers) => {
 
-  const dummyDevToRealDev = mapDevlopersToStoriesUtil(stories, developers);
+  // const dummyDevToRealDev = mapDevlopersToStoriesUtil(stories, developers);
+  const dummyDevToRealDev = {};
+  for (let i = 0; i < developers.length; i++) {
+    dummyDevToRealDev[i] = developers[i].id;
+  }
 
   for (let i = 0; i < stories.length; i++) {
     stories[i].developers = [];
@@ -348,7 +415,8 @@ const storyPlanning = (
     stories,
     dummyDevs,
     dependencyGraph,
-    indegrees
+    indegrees,
+    developers
   );
   if (givenTotalDuration) {
     if (
