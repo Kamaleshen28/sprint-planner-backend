@@ -59,7 +59,17 @@ const downloadAsCSV = async (req, res) => {
       );
       const csvString = PROJECT_UTILS.convertToCSV(sprintCalculation);
       res.setHeader('Content-Type', 'text/csv');
-      res.setHeader('Content-Disposition', 'attachment; filename=project.csv');
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename=${result.title}.csv`
+      );
+      // res.setHeader('filename', `${result.title}.csv`);
+      res.set('Content-Type', 'text/csv');
+      res.set(
+        'Content-Disposition',
+        `attachment; filename=${result.title}.csv`
+      );
+      res.set('filename', `${Date.now()}-${result.title}.csv`);
       return res.send(csvString);
     }
     return res.status(404).json({ message: 'Project not found' });
@@ -175,7 +185,7 @@ const editProjectDetailsById = async (req, res) => {
     const sprintPlan = PROJECT_UTILS.calculateSprint(
       JSON.parse(JSON.stringify(result))
     );
-    
+
     const { minimumNumberOfDevelopers } = sprintPlan;
     console.log('minimumNumberOfDevelopers', minimumNumberOfDevelopers);
     if (minimumNumberOfDevelopers) {

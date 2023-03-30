@@ -8,7 +8,12 @@ const validateToken = require('./middlewares/authMiddlewareOkta');
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: '*',
+  exposedHeaders: ['filename'],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
