@@ -343,7 +343,7 @@ const input6 = {
       id: 0,
       dependencies: [4, 5],
       storyPoints: 5,
-      assignedDeveloperId: 2,
+      assignedDeveloperId: null,
     },
     {
       id: 1,
@@ -355,7 +355,7 @@ const input6 = {
       id: 2,
       dependencies: [5],
       storyPoints: 4,
-      assignedDeveloperId: null,
+      assignedDeveloperId: 2,
     },
     {
       id: 3,

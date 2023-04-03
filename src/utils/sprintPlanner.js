@@ -159,14 +159,14 @@ const planStories = (
   initialzeLists(pending, available, isComplete, indegrees, stories);
 
   while (isComplete.some((x) => x === false)) {
-    console.log('Day :', currentDay);
-    console.log('developers :', developers);
-    console.log('inProgress :', inProgress);
-    console.log('available :', available);
-    console.log('pending :', pending);
-    console.log('isComplete :', isComplete);
-    console.log('devsAvailable :', devsAvailable);
-    console.log('-------------------------');
+    // console.log('Day :', currentDay);
+    // console.log('developers :', developers);
+    // console.log('inProgress :', inProgress);
+    // console.log('available :', available);
+    // console.log('pending :', pending);
+    // console.log('isComplete :', isComplete);
+    // console.log('devsAvailable :', devsAvailable);
+    // console.log('-------------------------');
     // assign stories to developers
     while (available.length > 0 && devsAvailable > 0) {
       
@@ -178,7 +178,7 @@ const planStories = (
         const requiredDevIndex = developers.findIndex(dev=>dev===stories[storyID].assignedDeveloperId);
         if(requiredDevIndex!==-1){
           developer = developers.splice(requiredDevIndex, 1)[0];
-          console.log(`Developer ${developer} assigned to story ${storyID}`);
+          // console.log(`Developer ${developer} assigned to story ${storyID}`);
         }
         else{
           // if(developers.length!==0){
@@ -189,14 +189,14 @@ const planStories = (
           // }
           // developer = developers.splice(0, 1)[0];
           // console.log(`Developer ${developer} assigned to story ${storyID} error case`);
-          console.log(developersOriginal)
-          console.log(stories[storyID].assignedDeveloperId)
+          // console.log(developersOriginal)
+          // console.log(stories[storyID].assignedDeveloperId)
           throw new Error(`Pre-assigned developer "${developersOriginal[stories[storyID].assignedDeveloperId].name}" cannot be assigned to story "${stories[storyID].title}"`);
         }
       }
       else{
         developer = developers.splice(0, 1)[0];
-        console.log(`Developer ${developer} assigned to story ${storyID}`);
+        // console.log(`Developer ${developer} assigned to story ${storyID}`);
       }
       stories[storyID].dummyDevs.push(developer);
       stories[storyID].startDay = currentDay;
@@ -223,7 +223,7 @@ const planStories = (
         1 * stories[inProgress[i]].dummyDevs.length;
 
       if (stories[inProgress[i]].remainingDuration <= 0) {
-        console.log('story completed :', inProgress[i]);
+        // console.log('story completed :', inProgress[i]);
         stories[inProgress[i]].endDay = currentDay;
         isComplete[inProgress[i]] = true;
         const freeDevs = stories[inProgress[i]].dummyDevs;
@@ -269,7 +269,7 @@ const mapDevlopersToStoriesUtil = (stories, developers) => {
       const remainingDevIndex = remainingDummyDevs.indexOf(
         stories[i].dummyDevs[0]
       );
-      console.log(stories[i].assignedDeveloperId)
+      // console.log(stories[i].assignedDeveloperId)
       if(availableDevIndex !== -1 && remainingDevIndex !== -1) {
         dummyDevToRealDev[stories[i].dummyDevs[0]] =
           stories[i].assignedDeveloperId;
@@ -357,7 +357,7 @@ const planSprints = (stories, numberOfSprints, sprintDuration, capacity) => {
   //   sprints[i].sort((a, b) => a.startDay - b.startDay);
   // }
   // return sprints;
-  console.log(numberOfSprints, sprintDuration, capacity);
+  // console.log(numberOfSprints, sprintDuration, capacity);
   const sprints = [];
   for (let i = 0; i < numberOfSprints; i++) {
     sprints.push([]);
@@ -391,10 +391,10 @@ const isPossible = (stories, totalDuration, sprintDuration, sprintCapacity) => {
   // number of coding days in a sprint = sprintCapacity upto 1 decimal
   const allowedNumberOfSprints =
     Math.round((totalDuration / sprintDuration) * 10) / 10;
-  console.log('allowedNumberOfSprints', allowedNumberOfSprints);
+  // console.log('allowedNumberOfSprints', allowedNumberOfSprints);
   const totalNumberOfCodingDays = allowedNumberOfSprints * sprintCapacity;
-  console.log('totalNumberOfCodingDays', totalNumberOfCodingDays);
-  console.log(maxEndDay, totalNumberOfCodingDays);
+  // console.log('totalNumberOfCodingDays', totalNumberOfCodingDays);
+  // console.log(maxEndDay, totalNumberOfCodingDays);
   if (maxEndDay > totalNumberOfCodingDays) return false;
   return true;
 };
@@ -467,7 +467,7 @@ const getSprints = (
 
   // !developers.length
   if (!developers && stories && givenTotalDuration) {
-    console.log('qwerty case');
+    // console.log('qwerty case');
     const maxDeveloperLimit = 50;
     for (
       let numberOfDevs = 1;
