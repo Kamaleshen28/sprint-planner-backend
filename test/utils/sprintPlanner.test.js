@@ -1,6 +1,6 @@
 const { getSprints } = require('../../src/utils/sprintPlanner');
 const inputs = require('./inputs');
-const output = require('./output');
+const output = require('./output.json');
 
 describe('getSprints', () => {
   // 1
@@ -11,7 +11,6 @@ describe('getSprints', () => {
       outputExpected
     );
   });
-
   // 2
   it('should return sprints ( multiple storie ending at same time )', () => {
     const { stories, developers, sprintDuration, capacity } = inputs.input2;
@@ -84,7 +83,7 @@ describe('getSprints', () => {
       outputExpected
     );
   });
-  // 11
+  // 11;
   it('should return sprints when more than two stories become available simultaneously', () => {
     const { stories, developers, sprintDuration, capacity } = inputs.input11;
     const outputExpected = output.output11;
@@ -133,7 +132,7 @@ describe('getSprints', () => {
     );
   });
   //  17
-  it('should return sprints when developers are more than use stories', () => {
+  it('should return sprints when developers are more than user stories', () => {
     const { stories, developers, sprintDuration, capacity } = inputs.input17;
     const outputExpected = output.output17;
     expect(getSprints(stories, developers, sprintDuration, capacity)).toEqual(
@@ -149,12 +148,23 @@ describe('getSprints', () => {
     ).toThrow(outputExpected);
   });
   // 19
-  it('should throw error when no developer is given', () => {
-    const { stories, developers, sprintDuration, capacity } = inputs.input19;
-    const outputExpected = output.output19;
-    expect(() =>
-      getSprints(stories, developers, sprintDuration, capacity)
-    ).toThrow(outputExpected);
+  it('should suggest minimum number of developers required when no developers are given', () => {
+    const {
+      stories,
+      developers,
+      sprintDuration,
+      givenTotalDuration,
+      sprintCapacity,
+    } = inputs.input19;
+    expect(
+      getSprints(
+        stories,
+        developers,
+        sprintDuration,
+        sprintCapacity,
+        givenTotalDuration
+      )
+    ).toEqual({ numberOfDevs: 1 });
   });
   // 20
   it('should return sprints when sprint duration is 3 weeks', () => {
@@ -163,5 +173,15 @@ describe('getSprints', () => {
     expect(getSprints(stories, developers, sprintDuration, capacity)).toEqual(
       outputExpected
     );
+  });
+  // 21
+  it('should return error that given assigned developer cannot be assigned to give story when developer is not available', () => {
+    const { stories, developers, sprintDuration, capacity } = inputs.input21;
+    const outputExpected = new Error(
+      'Pre-assigned developer "smita" cannot be assigned to story "story 1"'
+    );
+    expect(() =>
+      getSprints(stories, developers, sprintDuration, capacity)
+    ).toThrow(outputExpected);
   });
 });

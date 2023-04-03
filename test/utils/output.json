@@ -1567,8 +1567,110 @@
       }
     ]
   },
-  "output11": [
-    [
+  "output11": {
+    "sprints": [
+      [
+        {
+          "id": 0,
+          "dependencies": [],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 3,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 4,
+          "assignedDeveloperId": 1,
+          "startDay": 0,
+          "endDay": 4,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 2,
+          "startDay": 4,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        }
+      ],
+      [
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 2,
+          "startDay": 4,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "dependencies": [1],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 10,
+          "endDay": 15,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 5,
+          "dependencies": [1],
+          "storyPoints": 11,
+          "assignedDeveloperId": 1,
+          "startDay": 10,
+          "endDay": 21,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [1],
+          "storyPoints": 11,
+          "assignedDeveloperId": 1,
+          "startDay": 10,
+          "endDay": 21,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [1],
+          "storyPoints": 11,
+          "assignedDeveloperId": 1,
+          "startDay": 10,
+          "endDay": 21,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 4,
+          "dependencies": [1, 5],
+          "storyPoints": 3,
+          "assignedDeveloperId": 2,
+          "startDay": 21,
+          "endDay": 24,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        }
+      ]
+    ],
+    "plannedStories": [
       {
         "id": 0,
         "dependencies": [],
@@ -1577,353 +1679,165 @@
         "startDay": 0,
         "endDay": 3,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "dependencies": [],
-        "storyPoints": 4,
-        "assignedDeveloperId": 1,
-        "startDay": 0,
-        "endDay": 4,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 2,
-        "startDay": 0,
-        "endDay": 9,
-        "remainingDuration": -2,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 1,
         "dependencies": [0, 3],
         "storyPoints": 6,
-        "assignedDeveloperId": 1,
-        "startDay": 4,
-        "endDay": 7,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
         "assignedDeveloperId": 2,
-        "startDay": 0,
-        "endDay": 9,
-        "remainingDuration": -2,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "dependencies": [0, 3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 1,
-        "startDay": 4,
-        "endDay": 7,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "dependencies": [1, 5],
-        "storyPoints": 5,
-        "assignedDeveloperId": 2,
-        "startDay": 9,
-        "endDay": 12,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "dependencies": [1, 5],
-        "storyPoints": 3,
-        "assignedDeveloperId": 1,
-        "startDay": 9,
-        "endDay": 12,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 2,
-        "dependencies": [1, 5],
-        "storyPoints": 5,
-        "assignedDeveloperId": 2,
-        "startDay": 9,
-        "endDay": 12,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "dependencies": [1, 5],
-        "storyPoints": 3,
-        "assignedDeveloperId": 1,
-        "startDay": 9,
-        "endDay": 12,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      }
-    ]
-  ],
-  "output12": [
-    [
-      {
-        "id": 0,
-        "dependencies": [],
-        "storyPoints": 3,
-        "assignedDeveloperId": 0,
-        "startDay": 0,
-        "endDay": 3,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "dependencies": [],
-        "storyPoints": 4,
-        "assignedDeveloperId": 1,
-        "startDay": 0,
-        "endDay": 4,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      },
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 0,
-        "startDay": 3,
-        "endDay": 12,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "dependencies": [0, 3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 1,
         "startDay": 4,
         "endDay": 10,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 1,
-        "dependencies": [0, 3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 1,
-        "startDay": 4,
-        "endDay": 10,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 0,
-        "startDay": 3,
-        "endDay": 12,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
+        "developers": [{ "id": 2, "name": "sahil" }]
       },
       {
         "id": 2,
-        "dependencies": [1, 5],
+        "dependencies": [1],
         "storyPoints": 5,
         "assignedDeveloperId": 0,
-        "startDay": 12,
-        "endDay": 16,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "dependencies": [1, 5],
-        "storyPoints": 3,
-        "assignedDeveloperId": 1,
-        "startDay": 12,
+        "startDay": 10,
         "endDay": 15,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      }
-    ],
-    [
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
       {
-        "id": 2,
-        "dependencies": [1, 5],
-        "storyPoints": 5,
-        "assignedDeveloperId": 0,
-        "startDay": 12,
-        "endDay": 16,
+        "id": 3,
+        "dependencies": [],
+        "storyPoints": 4,
+        "assignedDeveloperId": 1,
+        "startDay": 0,
+        "endDay": 4,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
+        "developers": [{ "id": 1, "name": "mukul" }]
+      },
+      {
+        "id": 4,
+        "dependencies": [1, 5],
+        "storyPoints": 3,
+        "assignedDeveloperId": 2,
+        "startDay": 21,
+        "endDay": 24,
+        "remainingDuration": 0,
+        "developers": [{ "id": 2, "name": "sahil" }]
+      },
+      {
+        "id": 5,
+        "dependencies": [1],
+        "storyPoints": 11,
+        "assignedDeveloperId": 1,
+        "startDay": 10,
+        "endDay": 21,
+        "remainingDuration": 0,
+        "developers": [{ "id": 1, "name": "mukul" }]
       }
     ]
-  ],
-  "output13": [
-    [
+  },
+
+  "output12": {
+    "sprints": [
+      [
+        {
+          "id": 0,
+          "dependencies": [],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 3,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 4,
+          "assignedDeveloperId": 1,
+          "startDay": 0,
+          "endDay": 4,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 0,
+          "startDay": 4,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 0,
+          "startDay": 4,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "dependencies": [1],
+          "storyPoints": 5,
+          "assignedDeveloperId": 1,
+          "startDay": 10,
+          "endDay": 15,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 5,
+          "dependencies": [1],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 10,
+          "endDay": 21,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [1],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 10,
+          "endDay": 21,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [1],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 10,
+          "endDay": 21,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 4,
+          "dependencies": [1, 5],
+          "storyPoints": 3,
+          "assignedDeveloperId": 1,
+          "startDay": 21,
+          "endDay": 24,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        }
+      ]
+    ],
+    "plannedStories": [
       {
         "id": 0,
         "dependencies": [],
@@ -1932,44 +1846,207 @@
         "startDay": 0,
         "endDay": 3,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
+      {
+        "id": 1,
+        "dependencies": [0, 3],
+        "storyPoints": 6,
+        "assignedDeveloperId": 0,
+        "startDay": 4,
+        "endDay": 10,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
+      {
+        "id": 2,
+        "dependencies": [1],
+        "storyPoints": 5,
+        "assignedDeveloperId": 1,
+        "startDay": 10,
+        "endDay": 15,
+        "remainingDuration": 0,
+        "developers": [{ "id": 1, "name": "mukul" }]
       },
       {
         "id": 3,
         "dependencies": [],
         "storyPoints": 4,
-        "assignedDeveloperId": 0,
-        "startDay": 3,
-        "endDay": 7,
+        "assignedDeveloperId": 1,
+        "startDay": 0,
+        "endDay": 4,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
+        "developers": [{ "id": 1, "name": "mukul" }]
+      },
       {
-        "id": 3,
-        "dependencies": [],
-        "storyPoints": 4,
-        "assignedDeveloperId": 0,
-        "startDay": 3,
-        "endDay": 7,
+        "id": 4,
+        "dependencies": [1, 5],
+        "storyPoints": 3,
+        "assignedDeveloperId": 1,
+        "startDay": 21,
+        "endDay": 24,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 1, "name": "mukul" }]
+      },
+      {
+        "id": 5,
+        "dependencies": [1],
+        "storyPoints": 11,
+        "assignedDeveloperId": 0,
+        "startDay": 10,
+        "endDay": 21,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      }
+    ]
+  },
+  "output13": {
+    "sprints": [
+      [
+        {
+          "id": 0,
+          "dependencies": [],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 3,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 4,
+          "assignedDeveloperId": 0,
+          "startDay": 3,
+          "endDay": 7,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 4,
+          "assignedDeveloperId": 0,
+          "startDay": 3,
+          "endDay": 7,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 0,
+          "startDay": 7,
+          "endDay": 13,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 0,
+          "startDay": 7,
+          "endDay": 13,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 13,
+          "endDay": 24,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 13,
+          "endDay": 24,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 13,
+          "endDay": 24,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 5],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 24,
+          "endDay": 29,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "dependencies": [1, 5],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 24,
+          "endDay": 29,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 4,
+          "dependencies": [1, 5],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 29,
+          "endDay": 32,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "dependencies": [1, 5],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 29,
+          "endDay": 32,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ]
+    ],
+    "plannedStories": [
+      {
+        "id": 0,
+        "dependencies": [],
+        "storyPoints": 3,
+        "assignedDeveloperId": 0,
+        "startDay": 0,
+        "endDay": 3,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 1,
@@ -1979,62 +2056,7 @@
         "startDay": 7,
         "endDay": 13,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 1,
-        "dependencies": [0, 3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 0,
-        "startDay": 7,
-        "endDay": 13,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 0,
-        "startDay": 13,
-        "endDay": 24,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [],
-    [
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 0,
-        "startDay": 13,
-        "endDay": 24,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 2,
@@ -2044,29 +2066,17 @@
         "startDay": 24,
         "endDay": 29,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
       {
-        "id": 2,
-        "dependencies": [1, 5],
-        "storyPoints": 5,
+        "id": 3,
+        "dependencies": [],
+        "storyPoints": 4,
         "assignedDeveloperId": 0,
-        "startDay": 24,
-        "endDay": 29,
+        "startDay": 3,
+        "endDay": 7,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 4,
@@ -2076,52 +2086,161 @@
         "startDay": 29,
         "endDay": 32,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
       {
-        "id": 4,
-        "dependencies": [1, 5],
-        "storyPoints": 3,
+        "id": 5,
+        "dependencies": [],
+        "storyPoints": 11,
         "assignedDeveloperId": 0,
-        "startDay": 29,
-        "endDay": 32,
+        "startDay": 13,
+        "endDay": 24,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
       }
     ]
-  ],
-  "output14": [
-    [
+  },
+  "output14": {
+    "sprints": [
+      [
+        {
+          "id": 0,
+          "dependencies": [],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 3,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 4,
+          "assignedDeveloperId": 1,
+          "startDay": 0,
+          "endDay": 4,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 2,
+          "startDay": 0,
+          "endDay": 11,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 3,
+          "startDay": 4,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 3, "name": "ram" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 2,
+          "startDay": 0,
+          "endDay": 11,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 3,
+          "startDay": 4,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 3, "name": "ram" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 2,
+          "startDay": 0,
+          "endDay": 11,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 5],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 11,
+          "endDay": 16,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 4,
+          "dependencies": [1, 5],
+          "storyPoints": 3,
+          "assignedDeveloperId": 3,
+          "startDay": 11,
+          "endDay": 14,
+          "remainingDuration": 0,
+          "developers": [{ "id": 3, "name": "ram" }]
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "dependencies": [1, 5],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 11,
+          "endDay": 16,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ]
+    ],
+    "plannedStories": [
       {
         "id": 0,
         "dependencies": [],
         "storyPoints": 3,
         "assignedDeveloperId": 0,
         "startDay": 0,
-        "endDay": 2,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
+        "endDay": 3,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
+      {
+        "id": 1,
+        "dependencies": [0, 3],
+        "storyPoints": 6,
+        "assignedDeveloperId": 3,
+        "startDay": 4,
+        "endDay": 10,
+        "remainingDuration": 0,
+        "developers": [{ "id": 3, "name": "ram" }]
+      },
+      {
+        "id": 2,
+        "dependencies": [1, 5],
+        "storyPoints": 5,
+        "assignedDeveloperId": 0,
+        "startDay": 11,
+        "endDay": 16,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 3,
@@ -2129,649 +2248,670 @@
         "storyPoints": 4,
         "assignedDeveloperId": 1,
         "startDay": 0,
-        "endDay": 3,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
-      },
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 2,
-        "startDay": 0,
-        "endDay": 7,
-        "remainingDuration": -2,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "dependencies": [0, 3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 1,
-        "startDay": 3,
-        "endDay": 5,
+        "endDay": 4,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 2,
-        "startDay": 0,
-        "endDay": 7,
-        "remainingDuration": -2,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "dependencies": [1, 5],
-        "storyPoints": 5,
-        "assignedDeveloperId": 2,
-        "startDay": 7,
-        "endDay": 9,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
+        "developers": [{ "id": 1, "name": "mukul" }]
       },
       {
         "id": 4,
         "dependencies": [1, 5],
         "storyPoints": 3,
+        "assignedDeveloperId": 3,
+        "startDay": 11,
+        "endDay": 14,
+        "remainingDuration": 0,
+        "developers": [{ "id": 3, "name": "ram" }]
+      },
+      {
+        "id": 5,
+        "dependencies": [],
+        "storyPoints": 11,
+        "assignedDeveloperId": 2,
+        "startDay": 0,
+        "endDay": 11,
+        "remainingDuration": 0,
+        "developers": [{ "id": 2, "name": "sahil" }]
+      }
+    ]
+  },
+  "output15": {
+    "sprints": [
+      [
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 8,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 8,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 8,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 8,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 1,
+          "startDay": 8,
+          "endDay": 14,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 4,
+          "dependencies": [3],
+          "storyPoints": 2,
+          "assignedDeveloperId": 2,
+          "startDay": 8,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        }
+      ],
+      [
+        {
+          "id": 1,
+          "dependencies": [3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 1,
+          "startDay": 8,
+          "endDay": 14,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 0,
+          "dependencies": [1],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 14,
+          "endDay": 19,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 2,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        }
+      ],
+      [
+        {
+          "id": 0,
+          "dependencies": [1],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 14,
+          "endDay": 19,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 2,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 2,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        }
+      ]
+    ],
+    "plannedStories": [
+      {
+        "id": 0,
+        "dependencies": [1],
+        "storyPoints": 5,
+        "assignedDeveloperId": 0,
+        "startDay": 14,
+        "endDay": 19,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
+      {
+        "id": 1,
+        "dependencies": [3],
+        "storyPoints": 6,
         "assignedDeveloperId": 1,
-        "startDay": 7,
+        "startDay": 8,
+        "endDay": 14,
+        "remainingDuration": 0,
+        "developers": [{ "id": 1, "name": "mukul" }]
+      },
+      {
+        "id": 2,
+        "dependencies": [1, 3],
+        "storyPoints": 9,
+        "assignedDeveloperId": 2,
+        "startDay": 14,
+        "endDay": 23,
+        "remainingDuration": 0,
+        "developers": [{ "id": 2, "name": "sahil" }]
+      },
+      {
+        "id": 3,
+        "dependencies": [],
+        "storyPoints": 8,
+        "assignedDeveloperId": 0,
+        "startDay": 0,
+        "endDay": 8,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
+      {
+        "id": 4,
+        "dependencies": [3],
+        "storyPoints": 2,
+        "assignedDeveloperId": 2,
+        "startDay": 8,
         "endDay": 10,
-        "remainingDuration": -3,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
+        "remainingDuration": 0,
+        "developers": [{ "id": 2, "name": "sahil" }]
       }
     ]
-  ],
-  "output15": [
-    [
+  },
+  "output16": {
+    "sprints": [
+      [
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 8,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 8,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 8,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 8,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 1,
+          "startDay": 8,
+          "endDay": 14,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 4,
+          "dependencies": [3],
+          "storyPoints": 2,
+          "assignedDeveloperId": 0,
+          "startDay": 8,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 1,
+          "dependencies": [3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 1,
+          "startDay": 8,
+          "endDay": 14,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 0,
+          "dependencies": [1],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 14,
+          "endDay": 19,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 1,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        }
+      ],
+      [
+        {
+          "id": 0,
+          "dependencies": [1],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 14,
+          "endDay": 19,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 1,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 1,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        }
+      ]
+    ],
+    "plannedStories": [
+      {
+        "id": 0,
+        "dependencies": [1],
+        "storyPoints": 5,
+        "assignedDeveloperId": 0,
+        "startDay": 14,
+        "endDay": 19,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
+      {
+        "id": 1,
+        "dependencies": [3],
+        "storyPoints": 6,
+        "assignedDeveloperId": 1,
+        "startDay": 8,
+        "endDay": 14,
+        "remainingDuration": 0,
+        "developers": [{ "id": 1, "name": "mukul" }]
+      },
+      {
+        "id": 2,
+        "dependencies": [1, 3],
+        "storyPoints": 9,
+        "assignedDeveloperId": 1,
+        "startDay": 14,
+        "endDay": 23,
+        "remainingDuration": 0,
+        "developers": [{ "id": 1, "name": "mukul" }]
+      },
       {
         "id": 3,
         "dependencies": [],
         "storyPoints": 8,
         "assignedDeveloperId": 0,
         "startDay": 0,
-        "endDay": 3,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
+        "endDay": 8,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
+      {
+        "id": 4,
+        "dependencies": [3],
+        "storyPoints": 2,
+        "assignedDeveloperId": 0,
+        "startDay": 8,
+        "endDay": 10,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      }
+    ]
+  },
+  "output17": {
+    "sprints": [
+      [
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 8,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 8,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 8,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 8,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 1,
+          "startDay": 8,
+          "endDay": 14,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 4,
+          "dependencies": [3],
+          "storyPoints": 2,
+          "assignedDeveloperId": 2,
+          "startDay": 8,
+          "endDay": 10,
+          "remainingDuration": 0,
+          "developers": [{ "id": 2, "name": "sahil" }]
+        }
+      ],
+      [
+        {
+          "id": 1,
+          "dependencies": [3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 1,
+          "startDay": 8,
+          "endDay": 14,
+          "remainingDuration": 0,
+          "developers": [{ "id": 1, "name": "mukul" }]
+        },
+        {
+          "id": 0,
+          "dependencies": [1],
+          "storyPoints": 5,
+          "assignedDeveloperId": 3,
+          "startDay": 14,
+          "endDay": 19,
+          "remainingDuration": 0,
+          "developers": [{ "id": 3, "name": "ram" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 0,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 0,
+          "dependencies": [1],
+          "storyPoints": 5,
+          "assignedDeveloperId": 3,
+          "startDay": 14,
+          "endDay": 19,
+          "remainingDuration": 0,
+          "developers": [{ "id": 3, "name": "ram" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 0,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "dependencies": [1, 3],
+          "storyPoints": 9,
+          "assignedDeveloperId": 0,
+          "startDay": 14,
+          "endDay": 23,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ]
+    ],
+    "plannedStories": [
+      {
+        "id": 0,
+        "dependencies": [1],
+        "storyPoints": 5,
+        "assignedDeveloperId": 3,
+        "startDay": 14,
+        "endDay": 19,
+        "remainingDuration": 0,
+        "developers": [{ "id": 3, "name": "ram" }]
       },
       {
         "id": 1,
         "dependencies": [3],
         "storyPoints": 6,
+        "assignedDeveloperId": 1,
+        "startDay": 8,
+        "endDay": 14,
+        "remainingDuration": 0,
+        "developers": [{ "id": 1, "name": "mukul" }]
+      },
+      {
+        "id": 2,
+        "dependencies": [1, 3],
+        "storyPoints": 9,
         "assignedDeveloperId": 0,
-        "startDay": 3,
-        "endDay": 6,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
+        "startDay": 14,
+        "endDay": 23,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
+      {
+        "id": 3,
+        "dependencies": [],
+        "storyPoints": 8,
+        "assignedDeveloperId": 0,
+        "startDay": 0,
+        "endDay": 8,
+        "remainingDuration": 0,
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 4,
         "dependencies": [3],
         "storyPoints": 2,
         "assignedDeveloperId": 2,
-        "startDay": 3,
-        "endDay": 5,
+        "startDay": 8,
+        "endDay": 10,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 1,
-        "dependencies": [3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 0,
-        "startDay": 3,
-        "endDay": 6,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      },
-      {
-        "id": 0,
-        "dependencies": [1],
-        "storyPoints": 5,
-        "assignedDeveloperId": 0,
-        "startDay": 6,
-        "endDay": 9,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "dependencies": [1, 3],
-        "storyPoints": 9,
-        "assignedDeveloperId": 1,
-        "startDay": 6,
-        "endDay": 11,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 2,
-        "dependencies": [1, 3],
-        "storyPoints": 9,
-        "assignedDeveloperId": 1,
-        "startDay": 6,
-        "endDay": 11,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
+        "developers": [{ "id": 2, "name": "sahil" }]
       }
     ]
-  ],
-  "output16": [
-    [
-      {
-        "id": 3,
-        "dependencies": [],
-        "storyPoints": 8,
-        "assignedDeveloperId": 0,
-        "startDay": 0,
-        "endDay": 4,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "dependencies": [3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 0,
-        "startDay": 4,
-        "endDay": 8,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "dependencies": [3],
-        "storyPoints": 2,
-        "assignedDeveloperId": 1,
-        "startDay": 4,
-        "endDay": 6,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 1,
-        "dependencies": [3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 0,
-        "startDay": 4,
-        "endDay": 8,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "dependencies": [3],
-        "storyPoints": 2,
-        "assignedDeveloperId": 1,
-        "startDay": 4,
-        "endDay": 6,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          }
-        ]
-      },
-      {
-        "id": 0,
-        "dependencies": [1],
-        "storyPoints": 5,
-        "assignedDeveloperId": 0,
-        "startDay": 8,
-        "endDay": 13,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "dependencies": [1, 3],
-        "storyPoints": 9,
-        "assignedDeveloperId": 1,
-        "startDay": 8,
-        "endDay": 15,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 0,
-        "dependencies": [1],
-        "storyPoints": 5,
-        "assignedDeveloperId": 0,
-        "startDay": 8,
-        "endDay": 13,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "dependencies": [1, 3],
-        "storyPoints": 9,
-        "assignedDeveloperId": 1,
-        "startDay": 8,
-        "endDay": 15,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ]
-  ],
-  "output17": [
-    [
-      {
-        "id": 3,
-        "dependencies": [],
-        "storyPoints": 8,
-        "assignedDeveloperId": 0,
-        "startDay": 0,
-        "endDay": 2,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "dependencies": [3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 0,
-        "startDay": 2,
-        "endDay": 4,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "dependencies": [3],
-        "storyPoints": 2,
-        "assignedDeveloperId": 2,
-        "startDay": 2,
-        "endDay": 4,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      },
-      {
-        "id": 0,
-        "dependencies": [1],
-        "storyPoints": 5,
-        "assignedDeveloperId": 0,
-        "startDay": 4,
-        "endDay": 6,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "dependencies": [1, 3],
-        "storyPoints": 9,
-        "assignedDeveloperId": 1,
-        "startDay": 4,
-        "endDay": 8,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 0,
-        "dependencies": [1],
-        "storyPoints": 5,
-        "assignedDeveloperId": 0,
-        "startDay": 4,
-        "endDay": 6,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "dependencies": [1, 3],
-        "storyPoints": 9,
-        "assignedDeveloperId": 1,
-        "startDay": 4,
-        "endDay": 8,
-        "remainingDuration": -1,
-        "developers": [
-          {
-            "id": 1,
-            "name": "mukul"
-          },
-          {
-            "id": 0,
-            "name": "harbir"
-          },
-          {
-            "id": 3,
-            "name": "ram"
-          },
-          {
-            "id": 2,
-            "name": "sahil"
-          }
-        ]
-      }
-    ]
-  ],
+  },
   "output18": "No stories available",
   "output19": "No developers available",
-  "output20": [
-    [
+  "output20": {
+    "sprints": [
+      [
+        {
+          "id": 0,
+          "dependencies": [],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 0,
+          "endDay": 3,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 4,
+          "assignedDeveloperId": 0,
+          "startDay": 3,
+          "endDay": 7,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "dependencies": [],
+          "storyPoints": 4,
+          "assignedDeveloperId": 0,
+          "startDay": 3,
+          "endDay": 7,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 0,
+          "startDay": 7,
+          "endDay": 13,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 1,
+          "dependencies": [0, 3],
+          "storyPoints": 6,
+          "assignedDeveloperId": 0,
+          "startDay": 7,
+          "endDay": 13,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 13,
+          "endDay": 24,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 13,
+          "endDay": 24,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "dependencies": [],
+          "storyPoints": 11,
+          "assignedDeveloperId": 0,
+          "startDay": 13,
+          "endDay": 24,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 2,
+          "dependencies": [1, 5],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 24,
+          "endDay": 29,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "dependencies": [1, 5],
+          "storyPoints": 5,
+          "assignedDeveloperId": 0,
+          "startDay": 24,
+          "endDay": 29,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        },
+        {
+          "id": 4,
+          "dependencies": [1, 5],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 29,
+          "endDay": 32,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "dependencies": [1, 5],
+          "storyPoints": 3,
+          "assignedDeveloperId": 0,
+          "startDay": 29,
+          "endDay": 32,
+          "remainingDuration": 0,
+          "developers": [{ "id": 0, "name": "harbir" }]
+        }
+      ]
+    ],
+    "plannedStories": [
       {
         "id": 0,
         "dependencies": [],
@@ -2780,44 +2920,7 @@
         "startDay": 0,
         "endDay": 3,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "dependencies": [],
-        "storyPoints": 4,
-        "assignedDeveloperId": 0,
-        "startDay": 3,
-        "endDay": 7,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 3,
-        "dependencies": [],
-        "storyPoints": 4,
-        "assignedDeveloperId": 0,
-        "startDay": 3,
-        "endDay": 7,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 1,
@@ -2827,62 +2930,7 @@
         "startDay": 7,
         "endDay": 13,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "id": 1,
-        "dependencies": [0, 3],
-        "storyPoints": 6,
-        "assignedDeveloperId": 0,
-        "startDay": 7,
-        "endDay": 13,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      },
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 0,
-        "startDay": 13,
-        "endDay": 24,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [],
-    [
-      {
-        "id": 5,
-        "dependencies": [],
-        "storyPoints": 11,
-        "assignedDeveloperId": 0,
-        "startDay": 13,
-        "endDay": 24,
-        "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 2,
@@ -2892,29 +2940,17 @@
         "startDay": 24,
         "endDay": 29,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
       {
-        "id": 2,
-        "dependencies": [1, 5],
-        "storyPoints": 5,
+        "id": 3,
+        "dependencies": [],
+        "storyPoints": 4,
         "assignedDeveloperId": 0,
-        "startDay": 24,
-        "endDay": 29,
+        "startDay": 3,
+        "endDay": 7,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
       },
       {
         "id": 4,
@@ -2924,30 +2960,18 @@
         "startDay": 29,
         "endDay": 32,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
-      }
-    ],
-    [
+        "developers": [{ "id": 0, "name": "harbir" }]
+      },
       {
-        "id": 4,
-        "dependencies": [1, 5],
-        "storyPoints": 3,
+        "id": 5,
+        "dependencies": [],
+        "storyPoints": 11,
         "assignedDeveloperId": 0,
-        "startDay": 29,
-        "endDay": 32,
+        "startDay": 13,
+        "endDay": 24,
         "remainingDuration": 0,
-        "developers": [
-          {
-            "id": 0,
-            "name": "harbir"
-          }
-        ]
+        "developers": [{ "id": 0, "name": "harbir" }]
       }
     ]
-  ]
+  }
 }

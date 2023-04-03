@@ -1,81 +1,3 @@
-// const stories = [
-//   {
-//     id: 0,
-//     dependencies: [4, 5],
-//     storyPoints: 5,
-//     assignedDeveloperId: 2,
-//   },
-//   {
-//     id: 1,
-//     dependencies: [3, 4],
-//     storyPoints: 3,
-//     assignedDeveloperId: null,
-//   },
-//   {
-//     id: 2,
-//     dependencies: [5],
-//     storyPoints: 4,
-//     assignedDeveloperId: null,
-//   },
-//   {
-//     id: 3,
-//     dependencies: [2],
-//     storyPoints: 2,
-//     assignedDeveloperId: null,
-//   },
-//   {
-//     id: 4,
-//     dependencies: [],
-//     storyPoints: 6,
-//     assignedDeveloperId: null,
-//     // storyPoints: 5,
-//   },
-//   {
-//     id: 5,
-//     dependencies: [],
-//     storyPoints: 5,
-//     assignedDeveloperId: null,
-//     // storyPoints: 6,
-//   },
-// ];
-// const storiesC = [
-//   {
-//     id: 0,
-//     dependencies: [3],
-//     storyPoints: 5,
-//   },
-//   {
-//     id: 1,
-//     dependencies: [],
-//     storyPoints: 3,
-//   },
-//   {
-//     id: 2,
-//     dependencies: [0, 1],
-//     storyPoints: 4,
-//   },
-//   {
-//     id: 3,
-//     dependencies: [2],
-//     storyPoints: 2,
-//   },
-// ];
-
-// const developers = [
-//   {
-//     id: 0,
-//     name: 'harbir',
-//   },
-//   {
-//     id: 1,
-//     name: 'mukul',
-//   },
-//   {
-//     id: 2,
-//     name: 'sahil',
-//   },
-// ];
-
 const input1 = {
   stories: [
     {
@@ -647,7 +569,7 @@ const input11 = {
     },
     {
       id: 2,
-      dependencies: [1, 5],
+      dependencies: [1],
       storyPoints: 5,
       assignedDeveloperId: null,
     },
@@ -665,7 +587,7 @@ const input11 = {
     },
     {
       id: 5,
-      dependencies: [],
+      dependencies: [1],
       storyPoints: 11,
       assignedDeveloperId: null,
     },
@@ -703,7 +625,7 @@ const input12 = {
     },
     {
       id: 2,
-      dependencies: [1, 5],
+      dependencies: [1],
       storyPoints: 5,
       assignedDeveloperId: null,
     },
@@ -721,7 +643,7 @@ const input12 = {
     },
     {
       id: 5,
-      dependencies: [],
+      dependencies: [1],
       storyPoints: 11,
       assignedDeveloperId: null,
     },
@@ -793,7 +715,7 @@ const input14 = {
       id: 0,
       dependencies: [],
       storyPoints: 3,
-      assignedDeveloperId: null,
+      assignedDeveloperId: 0,
     },
     {
       id: 1,
@@ -811,19 +733,19 @@ const input14 = {
       id: 3,
       dependencies: [],
       storyPoints: 4,
-      assignedDeveloperId: null,
+      assignedDeveloperId: 1,
     },
     {
       id: 4,
       dependencies: [1, 5],
       storyPoints: 3,
-      assignedDeveloperId: null,
+      assignedDeveloperId: 3,
     },
     {
       id: 5,
       dependencies: [],
       storyPoints: 11,
-      assignedDeveloperId: null,
+      assignedDeveloperId: 2,
     },
   ],
   developers: [
@@ -1029,9 +951,10 @@ const input19 = {
       assignedDeveloperId: null,
     },
   ],
-  developers: [],
   sprintDuration: 2,
+  sprintCapacity: 10,
   capacity: 5,
+  givenTotalDuration: 4,
 };
 
 const input20 = {
@@ -1083,6 +1006,69 @@ const input20 = {
   capacity: 5,
 };
 
+const input21 = {
+  stories: [
+    {
+      id: 0,
+      title: 'story 0',
+      dependencies: [],
+      storyPoints: 3,
+      assignedDeveloperId: 0,
+    },
+    {
+      id: 1,
+      title: 'story 1',
+      dependencies: [0, 3],
+      storyPoints: 6,
+      assignedDeveloperId: 2,
+    },
+    {
+      id: 2,
+      title: 'story 2',
+      dependencies: [1, 5],
+      storyPoints: 5,
+      assignedDeveloperId: null,
+    },
+    {
+      id: 3,
+      dependencies: [],
+      title: 'story 3',
+      storyPoints: 4,
+      assignedDeveloperId: 1,
+    },
+    {
+      id: 4,
+      title: 'story 4',
+      dependencies: [1, 5],
+      storyPoints: 3,
+      assignedDeveloperId: null,
+    },
+    {
+      id: 5,
+      title: 'story 5',
+      dependencies: [],
+      storyPoints: 11,
+      assignedDeveloperId: 2,
+    },
+  ],
+  developers: [
+    {
+      id: 0,
+      name: 'harbir',
+    },
+    {
+      id: 1,
+      name: 'mukul',
+    },
+    {
+      id: 0,
+      name: 'smita',
+    },
+  ],
+  sprintDuration: 2,
+  capacity: 5,
+};
+
 const inputs = {
   input1,
   input2,
@@ -1104,5 +1090,6 @@ const inputs = {
   input18,
   input19,
   input20,
+  input21,
 };
 module.exports = inputs;
