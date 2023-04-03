@@ -69,7 +69,11 @@ const downloadAsCSV = async (req, res) => {
         'Content-Disposition',
         `attachment; filename=${result.title}.csv`
       );
-      res.set('filename', `${Date.now()}-${result.title}.csv`);
+      let date = new Date();
+      date = date.toISOString();
+      // eslint-disable-next-line prefer-destructuring
+      date = date.split('T')[0];
+      res.set('filename', `${date}-${result.title}.csv`);
       return res.send(csvString);
     }
     return res.status(404).json({ message: 'Project not found' });
