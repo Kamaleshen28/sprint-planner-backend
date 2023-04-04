@@ -508,4 +508,54 @@ describe('Project Controller', () => {
       expect(res.json).toHaveBeenCalledWith({ message: 'Error' });
     });
   });
+
+  describe('deleteProject', () => {
+    it('should return 200 if project is deleted', async () => {
+      const req = {
+        params: {
+          id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+        },
+        user: {
+          username: 'test',
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.deleteProject = jest.fn();
+
+      await projectController.deleteProjectById(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(204);
+      expect(res.json).toHaveBeenCalledWith({
+        message: 'Project deleted successfully',
+      });
+    });
+
+    it('should return 500 if error is thrown', async () => {
+      const req = {
+        params: {
+          id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+        },
+        user: {
+          username: 'test',
+        },
+      };
+
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.deleteProject = jest.fn().mockImplementation(() => {
+        throw new Error('Error');
+      });
+
+      await projectController.deleteProjectById(req, res);
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({ message: 'Error' });
+    });
+  });
 });
