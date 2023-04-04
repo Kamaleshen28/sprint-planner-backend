@@ -7,9 +7,11 @@ const API_ROUTER = require('./routes');
 const validateToken = require('./middlewares/authMiddlewareOkta');
 
 const app = express();
+// hide powered by express
+app.disable('x-powered-by');
 
 const corsOptions = {
-  origin: '*',
+  origin: 'http://localhost:3000',
   exposedHeaders: ['filename'],
 };
 

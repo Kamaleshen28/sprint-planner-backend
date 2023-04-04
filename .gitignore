@@ -4,4 +4,6 @@ database/config/config.json
 coverage
 .DS_Store
 .env.development
+sonar-project.properties
+.scannerwork/
 ```
