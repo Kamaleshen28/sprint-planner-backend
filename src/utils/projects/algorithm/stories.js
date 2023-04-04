@@ -15,7 +15,7 @@ const initialzeLists = (indegrees, stories) => {
     }
     isComplete[i] = false;
   }
-  pending.sort();
+  pending.sort((a, b) => a - b);
 
   return { pending, availableStories: available, inProgress, isComplete };
 };

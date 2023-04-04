@@ -96,8 +96,8 @@ const initialzeLists = (pending, available, isComplete, indegrees, stories) => {
     }
     isComplete[i] = false;
   }
-  pending.sort();
-  available.sort();
+  pending.sort((a, b) => (a - b));
+  available.sort((a, b) => (a - b));
   rearrangeAvailableStories(available,stories);
 };
 
@@ -112,8 +112,8 @@ const updateLists = (pending, available, indegrees, stories) => {
       i++;
     }
   }
-  pending.sort();
-  available.sort();
+  pending.sort((a, b) => (a - b));
+  available.sort((a, b) => (a - b));
   rearrangeAvailableStories(available,stories);
 };
 
@@ -201,7 +201,7 @@ const planStories = (
       stories[storyID].dummyDevs.push(developer);
       stories[storyID].startDay = currentDay;
       inProgress.push(storyID);
-      inProgress.sort();
+      inProgress.sort((a, b) => (a - b));
       devsAvailable--;
     }
     if (allowMultipleDevsOnStory) {
