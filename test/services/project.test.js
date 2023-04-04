@@ -246,19 +246,5 @@ describe('Project Services', () => {
       });
       expect(result).toEqual(mockResultFromFindByPk);
     });
-
-    it('should return a project if Project.update returns a project', async () => {
-      const mockResultFromFindByPk = { id: 1, title: 'Test Project' };
-      jest.spyOn(projectServices, 'updateProjectDetails');
-      jest.spyOn(projectServices, 'updateStoryDetails');
-      jest.spyOn(projectServices, 'updateDeveloperDetails');
-      jest.spyOn(Project, 'findByPk').mockResolvedValue(mockResultFromFindByPk);
-      const result = await projectServices.editProject('testOwner', 1, {
-        title: 'test',
-        stories: null,
-        developers: null,
-      });
-      expect(result).toEqual(mockResultFromFindByPk);
-    });
   });
 });
