@@ -252,65 +252,65 @@ const planStories = (
 };
 
 // map dummyDevs to real devs and remove dummyDevs
-const mapDevlopersToStoriesUtil = (stories, developers) => {
-  const dummyDevToRealDev = {};
-  const availableDevelopers = [];
-  const remainingDummyDevs = [];
-  for (let i = 0; i < developers.length; i++) {
-    availableDevelopers.push(developers[i].id);
-    remainingDummyDevs.push(i);
-  }
+// const mapDevlopersToStoriesUtil = (stories, developers) => {
+//   const dummyDevToRealDev = {};
+//   const availableDevelopers = [];
+//   const remainingDummyDevs = [];
+//   for (let i = 0; i < developers.length; i++) {
+//     availableDevelopers.push(developers[i].id);
+//     remainingDummyDevs.push(i);
+//   }
 
-  for (let i = 0; i < stories.length; i++) {
-    if (stories[i].assignedDeveloperId !== undefined && stories[i].assignedDeveloperId !== null) {
-      const availableDevIndex = availableDevelopers.indexOf(
-        stories[i].assignedDeveloperId
-      );
-      const remainingDevIndex = remainingDummyDevs.indexOf(
-        stories[i].dummyDevs[0]
-      );
-      // console.log(stories[i].assignedDeveloperId)
-      if(availableDevIndex !== -1 && remainingDevIndex !== -1) {
-        dummyDevToRealDev[stories[i].dummyDevs[0]] =
-          stories[i].assignedDeveloperId;
-        availableDevelopers.splice(
-          availableDevelopers.indexOf(stories[i].assignedDeveloperId),
-          1
-        );
-        remainingDummyDevs.splice(
-          remainingDummyDevs.indexOf(stories[i].dummyDevs[0]),
-          1
-        );
-      }
-      else{
-        // console.log('error');
-        if( stories[i].assignedDeveloperId !== dummyDevToRealDev[stories[i].dummyDevs[0]])
-          throw new Error(`Please change or remove the developer assigned to story "${stories[i].title}" as he is already assigned to another story`);
-      }
+//   for (let i = 0; i < stories.length; i++) {
+//     if (stories[i].assignedDeveloperId !== undefined && stories[i].assignedDeveloperId !== null) {
+//       const availableDevIndex = availableDevelopers.indexOf(
+//         stories[i].assignedDeveloperId
+//       );
+//       const remainingDevIndex = remainingDummyDevs.indexOf(
+//         stories[i].dummyDevs[0]
+//       );
+//       // console.log(stories[i].assignedDeveloperId)
+//       if(availableDevIndex !== -1 && remainingDevIndex !== -1) {
+//         dummyDevToRealDev[stories[i].dummyDevs[0]] =
+//           stories[i].assignedDeveloperId;
+//         availableDevelopers.splice(
+//           availableDevelopers.indexOf(stories[i].assignedDeveloperId),
+//           1
+//         );
+//         remainingDummyDevs.splice(
+//           remainingDummyDevs.indexOf(stories[i].dummyDevs[0]),
+//           1
+//         );
+//       }
+//       else{
+//         // console.log('error');
+//         if( stories[i].assignedDeveloperId !== dummyDevToRealDev[stories[i].dummyDevs[0]])
+//           throw new Error(`Please change or remove the developer assigned to story "${stories[i].title}" as he is already assigned to another story`);
+//       }
 
-    }
-  }
+//     }
+//   }
 
-  let i = 0;
-  while (i < stories.length && dummyDevToRealDev.length !== developers.length) {
-    if (
-      dummyDevToRealDev[stories[i].dummyDevs[0]] === undefined &&
-      !stories[i].assignedDeveloperId
-    ) {
-      dummyDevToRealDev[stories[i].dummyDevs[0]] = availableDevelopers[0];
-      availableDevelopers.splice(0, 1);
-      remainingDummyDevs.splice(
-        remainingDummyDevs.indexOf(stories[i].dummyDevs[0]),
-        1
-      );
-    }
-    i++;
-  }
-  for (let i = 0; i < remainingDummyDevs.length; i++) {
-    dummyDevToRealDev[remainingDummyDevs[i]] = availableDevelopers[i];
-  }
-  return dummyDevToRealDev;
-};
+//   let i = 0;
+//   while (i < stories.length && dummyDevToRealDev.length !== developers.length) {
+//     if (
+//       dummyDevToRealDev[stories[i].dummyDevs[0]] === undefined &&
+//       !stories[i].assignedDeveloperId
+//     ) {
+//       dummyDevToRealDev[stories[i].dummyDevs[0]] = availableDevelopers[0];
+//       availableDevelopers.splice(0, 1);
+//       remainingDummyDevs.splice(
+//         remainingDummyDevs.indexOf(stories[i].dummyDevs[0]),
+//         1
+//       );
+//     }
+//     i++;
+//   }
+//   for (let i = 0; i < remainingDummyDevs.length; i++) {
+//     dummyDevToRealDev[remainingDummyDevs[i]] = availableDevelopers[i];
+//   }
+//   return dummyDevToRealDev;
+// };
 
 const mapDevlopersToStories = (stories, developers) => {
 
