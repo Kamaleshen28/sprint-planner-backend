@@ -174,4 +174,7 @@ module.exports = {
   editProject,
   updateProjectStatus,
   updateProjectRemarks,
+  updateProjectDetails,
+  updateStoryDetails,
+  updateDeveloperDetails,
 };
