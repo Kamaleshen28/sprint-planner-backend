@@ -73,4 +73,83 @@ describe('validate middleware', () => {
       });
     });
   });
+
+  describe('validateBody', () => {
+    it('should validate body', () => {
+      const req = {
+        body: {
+          title: 'title',
+          duration: 1,
+          sprintDuration: 1,
+          sprintCapacity: 1,
+          projectStartDate: '2020-01-01',
+          givenTotalDuration: 1,
+          stories: [
+            {
+              id: 1,
+              title: 'title',
+              description: 'description',
+              dependencies: [1],
+              storyPoints: 1,
+              preAssignedDeveloperId: 1,
+            },
+          ],
+          developers: [
+            {
+              id: 1,
+              name: 'name',
+              capacity: 1,
+            },
+          ],
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+      validateBody(validationSchemas.createProjectRequest)(req, res, next);
+      expect(next).toHaveBeenCalled();
+    });
+
+    it('should throw error if body is invalid', () => {
+      const req = {
+        body: {
+          duration: 1,
+          sprintDuration: 1,
+          sprintCapacity: 1,
+          projectStartDate: '2020-01-01',
+          givenTotalDuration: 1,
+          stories: [
+            {
+              id: 1,
+              title: 'title',
+              description: 'description',
+              dependencies: [1],
+              storyPoints: 1,
+              preAssignedDeveloperId: 1,
+            },
+          ],
+          developers: [
+            {
+              id: 1,
+              name: 'name',
+              capacity: 1,
+            },
+          ],
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+      validateBody(validationSchemas.createProjectRequest)(req, res, next);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
+        message: '"title" is required',
+      });
+    });
+  });
 });
