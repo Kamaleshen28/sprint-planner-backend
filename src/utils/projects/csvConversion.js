@@ -46,4 +46,4 @@ const csvConversion = (data) => {
   return csvString;
 };
 
-module.exports = csvConversion;
+module.exports = { csvConversion, returnStartAndEndDates };

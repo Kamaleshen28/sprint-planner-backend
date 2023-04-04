@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const projectServices = require('../../src/services/projects');
 const projectController = require('../../src/controllers/projects');
 const projectUtils = require('../../src/utils/projects');
