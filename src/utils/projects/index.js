@@ -1,4 +1,6 @@
+const { csvConversion } = require('./csvConversion');
+
 module.exports = {
   calculateSprint: require('./sprintCalculation'),
-  convertToCSV: require('./csvConversion'),
+  convertToCSV: csvConversion,
 };
