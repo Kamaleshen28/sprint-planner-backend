@@ -509,6 +509,157 @@ describe('Project Controller', () => {
     });
   });
 
+  describe('editProjectDetailsById', () => {
+    it('should return 201 if project is edited', async () => {
+      const req = {
+        params: {
+          id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+        },
+        body: {
+          stories: [
+            {
+              title: 'test',
+              description: 'test',
+              points: 1,
+            },
+          ],
+          developers: [
+            {
+              name: 'test',
+            },
+          ],
+        },
+        user: {
+          username: 'test',
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.editProject = jest.fn().mockReturnValue({
+        title: 'test',
+      });
+
+      projectUtils.calculateSprint = jest.fn().mockReturnValue({
+        minimumNumberOfDevelopers: 1,
+      });
+
+      projectServices.updateProjectStatus = jest.fn().mockReturnValue({
+        status: 'unsupportedInput',
+      });
+
+      projectServices.updateProjectRemarks = jest
+        .fn()
+        .mockReturnValue('Please add 1 developers to plan this project');
+
+      await projectController.editProjectDetailsById(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(201);
+      expect(res.json).toHaveBeenCalledWith({
+        message: 'Project edited successfully',
+        data: {
+          minimumNumberOfDevelopers: 1,
+          remarks: 'Please add 1 developers to plan this project',
+          status: 'unsupportedInput',
+        },
+      });
+    });
+    it('should return 201 if project is edited', async () => {
+      const req = {
+        params: {
+          id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+        },
+        body: {
+          stories: [
+            {
+              title: 'test',
+              description: 'test',
+              points: 1,
+            },
+          ],
+          developers: [
+            {
+              name: 'test',
+            },
+          ],
+        },
+        user: {
+          username: 'test',
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.editProject = jest.fn().mockReturnValue({
+        title: 'test',
+      });
+
+      projectUtils.calculateSprint = jest.fn().mockReturnValue({});
+
+      projectServices.updateProjectStatus = jest.fn().mockReturnValue({
+        status: 'planned',
+      });
+
+      projectServices.updateProjectRemarks = jest.fn().mockReturnValue('');
+
+      await projectController.editProjectDetailsById(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(201);
+      expect(res.json).toHaveBeenCalledWith({
+        message: 'Project edited successfully',
+        data: {
+          remarks: '',
+          status: 'planned',
+        },
+      });
+    });
+
+    it('should return 500 if error is thrown', async () => {
+      const req = {
+        params: {
+          id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+        },
+        body: {
+          stories: [
+            {
+              title: 'test',
+              description: 'test',
+              points: 1,
+            },
+          ],
+          developers: [
+            {
+              name: 'test',
+            },
+          ],
+        },
+        user: {
+          username: 'test',
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.editProject = jest.fn().mockImplementation(() => {
+        throw new Error('Error');
+      });
+
+      await projectController.editProjectDetailsById(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({
+        message: 'Error',
+        projectId: '5f9f1b9b0b1b9c0b8c8b8b8b',
+      });
+    });
+  });
+
   describe('deleteProject', () => {
     it('should return 200 if project is deleted', async () => {
       const req = {
@@ -586,6 +737,33 @@ describe('Project Controller', () => {
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith({
         message: 'Project bookmarked successfully',
+      });
+    });
+
+    it('should return 404 if project is not found', async () => {
+      const req = {
+        params: {
+          id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+        },
+        user: {
+          username: 'test',
+        },
+        body: {
+          isBookmarked: true,
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.editProject = jest.fn().mockReturnValue(null);
+
+      await projectController.bookmarkProjectById(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(404);
+      expect(res.json).toHaveBeenCalledWith({
+        message: 'Project not found',
       });
     });
 
