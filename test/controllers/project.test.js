@@ -221,4 +221,100 @@ describe('Project Controller', () => {
       expect(res.json).toHaveBeenCalledWith({ message: 'Error' });
     });
   });
+
+  describe('getProjectList', () => {
+    it('should return 200 if projects are found', async () => {
+      const req = {
+        user: {
+          username: 'test',
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.getProjectListByOwner = jest.fn().mockReturnValue([
+        {
+          id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+          title: 'test',
+          description: 'test',
+          status: 'planned',
+          createdBy: 'test',
+        },
+        {
+          id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+          title: 'test',
+          description: 'test',
+          status: 'planned',
+          createdBy: 'test',
+        },
+      ]);
+
+      await projectController.getProjectList(req, res);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({
+        message: 'Project list fetched successfully',
+        data: [
+          {
+            id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+            title: 'test',
+            description: 'test',
+            status: 'planned',
+            createdBy: 'test',
+          },
+          {
+            id: '5f9f1b9b0b1b9c0b8c8b8b8b',
+            title: 'test',
+            description: 'test',
+            status: 'planned',
+            createdBy: 'test',
+          },
+        ],
+      });
+    });
+
+    it('should return 404 if no projects are found', async () => {
+      const req = {
+        user: {
+          username: 'test',
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.getProjectListByOwner = jest.fn().mockReturnValue([]);
+
+      await projectController.getProjectList(req, res);
+      expect(res.status).toHaveBeenCalledWith(404);
+
+      expect(res.json).toHaveBeenCalledWith({
+        message: 'No project found',
+      });
+    });
+
+    it('should return 500 if error is thrown', async () => {
+      const req = {
+        user: {
+          username: 'test',
+        },
+      };
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+
+      projectServices.getProjectListByOwner = jest
+        .fn()
+        .mockImplementation(() => {
+          throw new Error('Error');
+        });
+
+      await projectController.getProjectList(req, res);
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({ message: 'Error' });
+    });
+  });
 });
