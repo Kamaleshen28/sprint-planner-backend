@@ -22,7 +22,7 @@ const getProject = async (req, res) => {
         JSON.parse(JSON.stringify(result))
       );
       return res.status(200).json({
-        message: 'Project created successfully',
+        message: 'Project fetched successfully',
         data: sprintCalculation,
       });
       // return res.status(200).json({
