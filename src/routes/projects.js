@@ -58,4 +58,12 @@ router.put(
   PROJECT_CONTROLLER.bookmarkProjectById
 ); // bookmark an existing project by id
 
+router.post(
+  '/calculateDuration',
+  validationMiddleware.validateBody(
+    validationSchemas.getEstimatedProjectDuration
+  ),
+  PROJECT_CONTROLLER.calculateDuration
+);
+
 module.exports = router;

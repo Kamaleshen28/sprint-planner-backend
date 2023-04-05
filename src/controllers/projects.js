@@ -165,6 +165,47 @@ const createProject = async (req, res) => {
   }
 };
 
+const calculateDuration = async (req, res) => {
+  try {
+    // data format to be validated
+    console.log('calculating duration');
+    const { sprintDuration, sprintCapacity, stories, developers } = req.body;
+    const project = {
+      stories,
+      developers,
+      sprintDuration,
+      sprintCapacity,
+    };
+    // do sprint calculation on this data
+    let sprintCalculation = PROJECT_UTILS.calculateSprint(
+      JSON.parse(JSON.stringify(project))
+    );
+    console.log('Sprint calculation done');
+    console.log(sprintCalculation);
+
+    const { minimumNumberOfDevelopers } = sprintCalculation;
+    if (!minimumNumberOfDevelopers) {
+      sprintCalculation.estimatedDuration =
+        sprintCalculation.sprints.length * sprintDuration;
+      sprintCalculation = {
+        estimatedDuration: sprintCalculation.estimatedDuration,
+      };
+    } else {
+      sprintCalculation.status = 'unsupportedInput';
+      sprintCalculation.remarks = `Please add ${minimumNumberOfDevelopers} developers to plan this project`;
+      sprintCalculation = {
+        remarks: sprintCalculation.remarks,
+      };
+    }
+    return res.status(201).json({
+      message: 'Project created successfully',
+      data: sprintCalculation,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const editProjectDetailsById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -260,4 +301,5 @@ module.exports = {
   deleteProjectById,
   downloadAsCSV,
   bookmarkProjectById,
+  calculateDuration,
 };
