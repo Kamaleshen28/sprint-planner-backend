@@ -8,7 +8,7 @@ Before you can start the server locally, make sure you have the following:
 
 - [Node.js](https://nodejs.org/) installed on your machine
 - [PostgreSQL](https://www.postgresql.org/) installed on your machine
-- An [Octa](https://developer.okta.com/signup/) account and create an app from the console
+- An [Okta](https://developer.okta.com/signup/) account and create an app from the console
 
 ## Getting Started
 
